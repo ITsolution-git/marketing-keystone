@@ -12,7 +12,7 @@ ds.add({
 		fileName: function(item,file){
 			var n = ''+item.title;
 			n = n.toLowerCase();
-			n = n.replace(' ','');
+			n = n.replace(/[^a-zA-Z0-9 ]/g,"").replace(' ','-');
 			return n + '.' + file.extension;
 		},
 		format: function(item, file){
@@ -28,7 +28,7 @@ ds.schema.post('save',function(){
 	keystone.list('Product').model.update({
 		_id: { $in : products }
 	},{
-		$push: { products: id }
+		$push: { datasheets: id }
 	},{
 		multi: true
 	},

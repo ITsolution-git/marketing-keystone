@@ -24,8 +24,8 @@ Product.add({
 		text: { type: Types.Textarea, label:'Feature 2 Title', dependsOn: { showFeatures: true } },
 	},
 	feature3:{
-		title: { type: String, label:'Feature 1 Title', dependsOn: { showFeatures: true } },
-		text: { type: Types.Textarea, label:'Feature 1 Title', dependsOn: { showFeatures: true } },
+		title: { type: String, label:'Feature 3 Title', dependsOn: { showFeatures: true } },
+		text: { type: Types.Textarea, label:'Feature 3 Title', dependsOn: { showFeatures: true } },
 	},
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
 	datasheets: { type: Types.Relationship, ref:'Data Sheet', hidden: true, many: true}
