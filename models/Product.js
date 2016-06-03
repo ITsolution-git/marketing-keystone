@@ -4,7 +4,8 @@ var Types = keystone.Field.Types;
 var Product = new keystone.List('Product', {
 	autocreate: true,
 	map: { name: 'title' },
-	autokey: { path: 'slug', from: 'title', unique: true }
+	autokey: { path: 'slug', from: 'title', unique: true },
+	track: true
 });
 
 Product.add({
