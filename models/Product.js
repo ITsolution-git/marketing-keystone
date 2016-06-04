@@ -10,7 +10,20 @@ var Product = new keystone.List('Product', {
 
 Product.add({
 	title: { type: String, required: true, initial: true, default: 'Pending Product'},
-	image: { type: Types.CloudinaryImage },
+	image: {
+		type: Types.LocalFile, 
+		dest: 'public/ul/',
+		allowedtypes: ['image/jpeg','image/png','image/gif','image/bmp'],
+		fileName: function(item,file){
+			var n = ''+item.title;
+			n = n.toLowerCase();
+			n = n.replace(/[^a-zA-Z0-9 ]/g,"").replace(' ','-');
+			return n + '.' + file.extension;
+		},
+		format: function(item, file){
+			return '<img src="../../ul/'+file.filename+'" />';
+		}
+	},
 	content: {
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
 		extended: { type: Types.Html, wysiwyg: true, height: 400 }
@@ -29,6 +42,7 @@ Product.add({
 		text: { type: Types.Textarea, label:'Feature 3 Title', dependsOn: { showFeatures: true } },
 	},
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
+	nav: { type: Types.Boolean, default: false, label:'Shown In Navbar Products Dropdown', index: true },
 	datasheets: { type: Types.Relationship, ref:'Data Sheet', hidden: true, many: true}
 });
 

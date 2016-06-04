@@ -1,34 +1,219 @@
 {% extends "../layouts/default.twig" %}
 
 {% block content %}
-	<div class="container">
-		<div class="jumbotron">
-			<img src="/images/logo.svg" width="160">
-			<h1>Welcome</h1>
-			<p>This is your new <a href="http://keystonejs.com" target="_blank">KeystoneJS</a> website.</p>
-			<p>
-				It includes the latest versions of
-				<a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
-				and <a href="http://www.jquery.com/" target="_blank">jQuery</a>.
-			</p>
-			<p>Visit the <a href="http://keystonejs.com/guide" target="_blank">Getting Started</a> guide to learn how to customise it.</p>
-			<hr>
-			{% if user and user.canAccessKeystone %}
-				<p>
-					<a href="/keystone" class="btn btn-lg btn-primary">Open the Admin UI</a>
-				</p>
-			{% else %}
-				<p>We have created a default Admin user for you with the email <strong>garrett@6bitconsulting.com</strong> and the password <strong>admin</strong>.</p>
-				<p>
-					<a href="/keystone/signin" style="margin-right: 10px" class="btn btn-lg btn-primary">Sign in</a>
-					to use the Admin UI.
-				</p>
-			{% endif %}
-			<hr>
-			<p>
-				Remember to <a href="https://github.com/keystonejs/keystone" target="_blank">Star KeystoneJS on GitHub</a> and
-				<a href="https://twitter.com/keystonejs" target="_blank">follow @keystonejs</a> on twitter for updates.
-			</p>
+<!-- SLIDER START
+============================================= -->
+<section id="slider" class="home-slider clearfix">
+		<div class="slider-wrapper">
+				<div class="flexslider clearfix">
+						<ul class="slides">
+							{% for item in slides %}
+							<li class="slide-item clearfix" style="background-image: url('/ul/{{item.image.filename}}');">   
+									<div class="flex-content">
+											<div class="container">
+													<div class="row">
+															<div class="caption-wrap">
+																	<div class="caption wow fadeInUp" data-wow-delay="0.5s">
+																			<h1>{{item.header}}</h1>
+																	</div> 
+																	<div class="caption wow fadeIn" data-wow-delay="1s">
+																			{{item.subheader}}
+																	</div>
+																	{% if item.bvisible %}
+																	<div class="caption wow fadeInUp" data-wow-delay="1.5s">
+																			<a href="{{item.button.url}}" class="button-normal">{{item.button.text}}</a>
+																	</div>
+																	{% endif %}
+															</div>
+													</div>
+											</div>
+									</div>
+							</li>
+							{% endfor %}
+						</ul>
+				</div>
 		</div>
-	</div>
+</section>
+<!-- SLIDER END -->
+
+<!-- CONTENT START
+============================================= -->
+<section id="content" class="clearfix">
+
+		<!-- SERVICES START
+		============================================= -->
+		<div class="services with-bg" style="background-image: url('/ul/{{settings.products_bg.filename}}');">
+				<div class="container">
+						<div class="row">
+								<div class="email-quote clearfix" style="opacity:0">
+								</div>
+						</div>
+				</div>
+
+				<div class="section-title text-center wow fadeIn">
+						<h2>Products</h2>
+				</div>
+
+				<div class="services-wrap-carousel">
+						{% for item in products %}
+						<div class="item">
+								<div class="services-content">
+										<div class="services-image" style="background-image: url('/ul/{{item.image.filename}}');"></div>
+										<div class="services-text">
+												<h3 class="title">{{item.title}}</h3>
+												<p>{{item.content.brief}}</p>
+												<a href="/products/{{item.slug}}" class="button-normal with-icon">
+														Read More
+														<i class="icon icon-arrow-right"></i>
+												</a>
+										</div>
+										<div class="overlay"></div>
+								</div>
+						</div>
+						{% endfor %}
+				</div>        
+		</div>
+		<!-- SERVICES END -->
+
+		<!-- FEATURES START
+		============================================= -->
+		<div class="features wrapper">
+				<div class="container">
+						<div class="row">
+								<div class="section-title text-center wow fadeIn">
+										<h2>Why Choose Us</h2>
+								</div>
+								
+								<div class="features-wrap row">
+								
+										<div class="col-md-4">
+												<div class="features-item wow fadeInUp" data-wow-delay="0.5s">
+														<div class="icon-wrap">
+																<i class="icon icon-delivery"></i>
+														</div>
+														<div class="text">
+																<h4>{{why.section1.title}}</h4>
+																<p>{{why.section1.text}}</p>
+														</div>
+												</div>
+										</div>
+
+										<div class="col-md-4">
+												<div class="features-item wow fadeInUp" data-wow-delay="0.8s">
+														<div class="icon-wrap">
+																<i class="icon icon-airplane"></i>
+														</div>
+														<div class="text">
+																<h4>{{why.section2.title}}</h4>
+																<p>{{why.section2.text}}</p>
+														</div>
+												</div>
+										</div>
+
+										<div class="col-md-4">
+												<div class="features-item wow fadeInUp" data-wow-delay="1.2s">
+														<div class="icon-wrap">
+																<i class="icon icon-cargo"></i>
+														</div>
+														<div class="text">
+																<h4>{{why.section3.title}}</h4>
+																<p>{{why.section3.text}}</p>
+														</div>
+												</div>
+										</div>
+
+										<div class="col-md-4">
+												<div class="features-item wow fadeInUp" data-wow-delay="1.3s">
+														<div class="icon-wrap">
+																<i class="icon icon-container"></i>
+														</div>
+														<div class="text">
+																<h4>{{why.section4.title}}</h4>
+																<p>{{why.section4.text}}</p>
+														</div>
+												</div>
+										</div>
+
+										<div class="col-md-4">
+												<div class="features-item wow fadeInUp" data-wow-delay="1.6s">
+														<div class="icon-wrap">
+																<i class="icon icon-box-delivery"></i>
+														</div>
+														<div class="text">
+																<h4>{{why.section5.title}}</h4>
+																<p>{{why.section5.text}}</p>
+														</div>
+												</div>
+										</div>
+
+										<div class="col-md-4">
+												<div class="features-item wow fadeInUp" data-wow-delay="1.9s">
+														<div class="icon-wrap">
+																<i class="icon icon-storage"></i>
+														</div>
+														<div class="text">
+																<h4>{{why.section6.title}}</h4>
+																<p>{{why.section6.text}}</p>
+														</div>
+												</div>
+										</div>
+								</div>
+						</div>
+				</div>
+		</div>
+		<!-- FEATURES END -->
+
+		<!-- TESTIMONIAL START
+		============================================= -->
+		{% include '../mixins/testimonials.twig' %}
+		<!-- TESTIMONIAL END -->
+
+		<!-- LATEST NEWS START
+		============================================= -->
+		<div class="latest-post wrapper bg-color">
+				<div class="container">
+						<div class="row">
+								<div class="section-title text-center wow fadeIn">
+										<h2>Latest News</h2>
+								</div>
+
+								<div class="post-wrap wow fadeIn" data-wow-delay="0.5s">
+										{% for item in recentPosts %}
+										<div class="post-item">
+												<div class="post-thumb">
+														<a href="/blog/post/{{item.slug}}">
+																<img src="/ul/{{item.image.filename}}" alt="" />
+																<div class="overlay"></div>
+														</a>
+												</div>
+
+												<div class="post-content">
+														<div class="date">
+																<span>{{item.publishedDate2.day}}</span>
+																<span>{{item.publishedDate2.month}}</span>
+														</div>
+														<div class="content-wrap">
+																<h4>{{item.title}}</h4>
+																<p class="excerpt">{{item.content.brief}}</p>
+																<a href="/blog/post/{{item.slug}}" class="button-normal with-icon">
+																		Read More
+																		<i class="icon icon-arrow-right"></i>
+																</a>
+														</div>
+												</div>
+										</div>
+										{% endfor %}
+								</div>
+						</div>
+				</div>
+		</div>
+		<!-- LATEST NEWS END -->
+
+		<!-- COUNTER NUMBER START
+		============================================= -->
+		{% include '../mixins/stats.twig' %}
+		<!-- COUNTER NUMBER END -->
+
+</section>
+<!-- CONTENT END -->
 {% endblock %}

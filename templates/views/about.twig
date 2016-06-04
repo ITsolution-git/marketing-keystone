@@ -1,0 +1,82 @@
+{% extends '../layouts/default.twig' %}
+{% block content %}
+<section class="page-title wrapper clearfix" style="background-image: url('/ul/{{settings.header_bg.filename}}');">
+	<div class="container">
+		<div class="row">
+			<div class="title-wrap wow fadeIn" data-wow-delay="1s">
+				<h1>About Us</h1>
+				<div class="breadcrumbs">
+					<p>You Are Here : 
+					<span><a href="/">Home</a></span>
+					<span class="arrow"><i class="icon icon-arrow-right"></i></span>
+					<span>About Us</span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="content" class="clearfix">
+	<div class="company-info wrapper clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="company-wrap row">
+					<div class="company-desc col-md-6 wow fadeIn">
+						<h3 class="title">{{about.topSection.title}}</h3>
+						{{about.topSection.description}}
+					</div>
+					<div class="company-slider col-md-6 wow fadeIn">
+						<ul class="slides">
+							{% for item in about.topSection.gallery.images %}
+							<li class="slide-item clearfix">   
+									<img src="/ul/{{item.filename}}" alt="" />
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+					<div class="company-vision">
+						<div class="item col-md-4 wow fadeInUp" data-wow-delay="0.3s">
+							<img src="/ul/{{about.block1.image.filename}}" alt="" />
+							<h4>{{about.block1.title}}</h4>
+							<p>{{about.block1.text}}</p>
+						</div>
+						<div class="item col-md-4 wow fadeInUp" data-wow-delay="0.6s">
+							<img src="/ul/{{about.block2.image.filename}}" alt="" />
+							<h4>{{about.block2.title}}</h4>
+							<p>{{about.block2.text}}</p>
+						</div>
+						<div class="item col-md-4 wow fadeInUp" data-wow-delay="0.9s">
+							<img src="/ul/{{about.block3.image.filename}}" alt="" />
+							<h4>{{about.block3.title}}</h4>
+							<p>{{about.block3.text}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% include '../mixins/testimonials.twig' %}
+	<div class="team wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="section-title text-center wow fadeIn">
+					<h2>Our Leaders</h2>
+				</div>
+				<div class="team-wrap wow fadeIn" data-wow-delay="0.5s">
+					{% for item in staff %}
+					<div class="team-item">
+						<div class="team-photo">
+							<img src="/ul/{{item.image.filename}}" alt="" />
+							<div class="team-details">
+								<h4>{{item.name}}</h4>
+								<p>{{item.title}}</p>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+	{% include '../mixins/stats.twig' %}
+</section>
+{% endblock %}

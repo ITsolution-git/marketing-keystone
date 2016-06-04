@@ -16,12 +16,24 @@ Post.add({
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
 	author: { type: Types.Relationship, ref: 'User', index: true },
 	publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
-	image: { type: Types.CloudinaryImage },
+	image: {
+		type: Types.LocalFile, 
+		dest: 'public/ul/',
+		allowedtypes: ['image/jpeg','image/png','image/gif','image/bmp'],
+		fileName: function(item,file){
+			var n = ''+item.title;
+			n = n.toLowerCase();
+			n = n.replace(/[^a-zA-Z0-9 ]/g,"").replace(' ','-');
+			return n + '.' + file.extension;
+		},
+		format: function(item, file){
+			return '<img src="../../ul/'+file.filename+'" />';
+		}
+	},
 	content: {
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
 		extended: { type: Types.Html, wysiwyg: true, height: 400 }
 	},
-	categories: { type: Types.Relationship, ref: 'PostCategory', many: true },
 	tags: { type: Types.TextArray }
 });
 
@@ -56,18 +68,6 @@ Post.schema.post('save', function() {
  */
 Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
 Post.register();
-
-var PostCategory = new keystone.List('PostCategory', {
-	autokey: { from: 'name', path: 'key', unique: true }
-});
-
-PostCategory.add({
-	name: { type: String, required: true }
-});
-
-PostCategory.relationship({ ref: 'Post', path: 'categories' });
-
-PostCategory.register();
 
 var keystone = require('keystone');
 var Types = keystone.Field.Types;

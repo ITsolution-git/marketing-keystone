@@ -1,124 +1,264 @@
-{% import "../mixins/flash-messages.twig" as FlashMessages %}
+{% spaceless %}
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en-US"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en-US"> <![endif]-->
+<!--[if gte IE 8]><html class="ie ie8" lang="en-US"> <![endif]-->
 
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html dir="ltr" lang="en-US">
 
-		<title>{{ title|default("Jeda") }}</title>
-		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,900,700,300' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="/css/plugin.css" type="text/css" />
+        <link rel="stylesheet" href="/css/style.css" type="text/css" />
+        <link rel="stylesheet" href="/css/responsive.css" type="text/css" />
+				{% block css %}{% endblock %}
+				{% block head %}{% endblock %}
+        <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <title>{{ title|default('') }}</title>
+    </head>
 
-		{# Customise the stylesheet for your site by editing /public/styles/site.sass #}
-		<link href="/styles/site.css" rel="stylesheet">
+    <body>
+        <div id="preloader">
+            <div id="status">
+                <img src="img/logo.png" alt="" />
+            </div>
+        </div>
 
-		{# This file provides the default styling for the KeystoneJS Content Editor #}
-		{%- if user and user.canAccessKeystone -%}
-			<link href="/keystone/styles/content/editor.min.css" rel="stylesheet">
-		{%- endif -%}
+        <!-- MAIN WRAPPER
+        ============================================= -->
+        <div id="main-wrapper" class="clearfix">
 
-		{# HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
-		   Safely remove this block if you are not targeting IE8 #}
-		<!--[if lt IE 9]>
-			<script src="//cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.js"></script>
-			<script src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+            <!-- HEADER
+            ============================================= -->
+            <header id="header" class="clearfix">
+                <div class="site-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="top-header clearfix">
+                                <div class="logo col-md-4">
+                                    <a href="index.html">
+                                        <img src="img/logo.png" alt="" />
+                                    </a>
+                                </div>
 
-		{# Include template-specific stylesheets by extending the css block #}
-		{%- block css %}{% endblock -%}
+                                <div class="info col-md-8">
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-clock-o"></i>
+                                            <p>
+                                                <span class="heading">Opening Hours</span>
+                                                <span>Mon - Sat: 09.00 - 17.00</span>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-phone"></i>
+                                            <p>
+                                                <span class="heading">Call Us</span>
+                                                <span>(064) 234 54876</span>
+                                            </p>
+                                        </li>
+                                        <li class="last">
+                                            <i class="fa fa-envelope"></i>
+                                            <p>
+                                                <span class="heading">Email Us</span>
+                                                <span>logitrans@domain.com</span>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
 
-		{# Add any other template-specific HEAD tags by extending the head block #}
-		{%- block head %}{% endblock %}
-	</head>
-	<body>
+                                <div class="slide-buttons">
+                                    <button id="slide-buttons" class="slide-button icon icon-navicon"></button>
+                                </div>
+                            </div>
 
-		{# HEADER #}
-		<div id="header" class="container">
+                            <div class="navigation">
+                                <div class="main-menu">
+                                    <ul class="menu">
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="/about">About Us</a></li>
+                                        <li class="has-sub"><a href="/products">Products</a>
+                                            <ul>
+                                              {% for item in productLinks %}
+																							<li {% if loop.last %}class="last"{%endif%}><a href="/products/{{item.slug}}">{{item.title}}</a></li>
+																							{% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li><a href="/blog">Blog</a></li>
+                                        <li><a href="/contact">Contact</a></li>
+                                    </ul>
 
-			{# Customise your site"s navigation by changing the navLinks Array in ./routes/middleware.js
-			   ... or completely change this header to suit your design. #}
-			<div role="navigation" class="navbar navbar-default">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="/">Jeda</a>
-					</div>
-					<div class="collapse navbar-collapse">
-						<ul class="nav navbar-nav navbar-left">
-							{%- for link in navLinks -%}
-								{%- set linkClass = '' -%}
-								{%- if link.key == section -%}
-									{%- set linkClass = ' class="active"' -%}
-								{%- endif %}
-								<li{{ linkClass | striptags }}>
-									<a href="{{ link.href }}">{{ link.label }}</a>
-								</li>
-							{%- endfor %}
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							{% if user -%}
-								{%- if user.canAccessKeystone -%}
-									<li><a href="/keystone">Open Keystone</a></li>
-								{%- endif -%}
-								<li><a href="/keystone/signout">Sign Out</a></li>
-							{%- else -%}
-								<li><a href="/keystone/signin">Sign In</a></li>
-							{%- endif %}
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+                                    <div class="right-section">
+                                        <div class="search">
+                                            <i class="fa fa-search"></i>
+                                        </div>
+																				<div class="quote-link">
+                                            <a href="/contact">Contact Us</a>
+                                        </div>
+                                        <div class="search-input">
+																					<form method="get" action="/products">
+																						<input type="text" name="q" placeholder="Search Products" class="untouched">
+																					</form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-		{# BODY #}
-		<div id="body">
-			{# NOTE:
-			   There is no .container wrapping class around body blocks to allow more flexibility in design.
-			   Remember to include it in your templates when you override the intro and content blocks! #}
+                <!-- Menu Mobile
+                ============================================= -->
+                <nav id="c-menu--slide-right" class="c-menu c-menu--slide-right">
+                    <button class="c-menu__close icon icon-close"></button>
 
-			{# The Intro block appears above flash messages (used for temporary information display) #}
-			{%- block intro -%}{%- endblock -%}
+                    <div class="search-input">
+                        <input type="text" name="s" placeholder="Type some text in here..." class="untouched">
+                        <button><i class="fa fa-search"></i></button>
+                    </div>
 
-			{# Flash messages allow you to display once-off status messages to users, e.g. form
-			   validation errors, success messages, etc. #}
-			{{ FlashMessages.renderMessages(messages) }}
+                    <ul class="slide-menu-items">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li class="has-sub"><a href="/products">Products</a>
+                            <ul>
+															 {% for item in productLinks %}
+															 <li><a href="/products/{{item.slug}}">{{item.title}}</a></li>
+															 {% endfor %}
+                            </ul>
+                        </li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/">Contact</a></li>
+                    </ul>
 
-			{# The content block should contain the body of your template"s content #}
-			{%- block content -%}{%- endblock -%}
-		</div>
+                    <div class="info">
+                        <ul>
+                            <li>
+                                <p>
+                                    <span class="heading">Opening Hours</span>
+                                    <span>Mon - Sat: 09.00 - 17.00</span>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <span class="heading">Call Us</span>
+                                    <span>(064) 234 54876</span>
+                                </p>
+                            </li>
+                            <li class="last">
+                                <p>
+                                    <span class="heading">Email Us</span>
+                                    <span>logitrans@domain.com</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
 
-		{# FOOTER #}
-		<div id="footer" class="container">
-			{# You don"t _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it! #}
-			<p>Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.</p>
-		</div>
+                <div id="slide-overlay" class="slide-overlay"></div>
+                <!-- Menu Mobile End -->
+            </header>
+            <!-- HEADER END -->
+						{% block content %}{% endblock %}
+						            <!-- FOOTER START
+            ============================================= -->
+            <footer id="footer" class="wrapper clearfix" style="background-image: url('/ul/{{footer.backgroundImage.filename}}');">
 
-		{# JAVASCRIPT #}
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-wrap row">
+                            <!-- WIDGET FOOTER 1 START
+                            ============================================= -->
+                            <div class="widget-footer col-md-3">
+                                <div class="short-desc">
+                                    <div class="logo-footer">
+                                        <img src="img/logo-footer.png" alt="" />
+                                    </div>
+                                    {{footer.text}}
+                                </div>
+                            </div>
+                            <!-- WIDGET FOOTER 1 END -->
 
-		{# jQuery 1.11.3 is included by default, and required by both Bootstrap
-			and the KeystoneJS Content Editor. If you are not targeting IE8,
-			you can upgrade to 2.1.4 (also bundled) for better performance. #}
-		<script src="/js/jquery/jquery-1.11.3.min.js"></script>
-
-		{# Customise which Bootstrap javascript files are served by including
-			them specifically here, instead of bootstrap-3.3.5.min.js #}
-		<script src="/js/bootstrap/bootstrap-3.3.5.min.js"></script>
-
-		{# The KeystoneJS Content Editor provides support for ks-editable data attributes,
-			which generate links to edit content for users who can access Keystone #}
-		{% if user and user.canAccessKeystone -%}
-			<script src="/keystone/js/content/editor.js"></script>
-		{%- endif -%}
-
-		{# Add scripts that are globally required by your site here. #}
-
-		{# Include template-specific javascript files by extending the js block #}
-		{%- block js -%}{%- endblock -%}
-	</body>
+                            <!-- WIDGET FOOTER 2 START
+                            ============================================= -->
+                            <div class="widget-footer col-md-3">
+                                <div class="recent-post">
+                                    <h4 class="title">Recent Post</h4>
+                                    <div class="footer-content">
+																				{% for item in recentPosts %}
+																				{% if loop.index0 < 2 %}
+                                        <div class="post-item">
+                                            <a href="single-post.html">
+                                                <div class="post-thumb">
+                                                    <img src="/ul/{{item.image.filename}}" style="height:50px;width:50px;" alt="" />
+                                                    <div class="overlay"></div>
+                                                </div>
+                                            </a>
+                                            <div class="post-content">
+                                                <a href="/blog/post/{{item.slug}}">
+                                                    <h4>{{item.title}}</h4>
+                                                </a>
+                                                <p>{{item.content.brief|striptags|slice(0,70)~'...'}}</p>
+                                                <div class="meta">
+                                                    <span class="date">{{item.publishedDate|date("d M, Y")}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+																				{% endif %}
+																				{% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-footer col-md-3">
+                                <div class="contact-footer">
+                                    <h4 class="title">Contact Us</h4>
+                                    <div class="footer-content">
+                                        <div class="contact-section">
+                                            <h4>Our Office Address</h4>
+                                            <p>Boulevard des Capucines</p>
+                                            <p>356, Coffee Street</p>
+                                            <p>Paris, France</p>
+                                            <p>Telephone : + 1 555 356 876</p>
+                                            <p>Email : info@themesawesome.com</p>
+                                        </div>
+                                        <div class="contact-section">
+                                            <h4>Our Storage Address</h4>
+                                            <p>Boulevard des Capucines</p>
+                                            <p>356, Coffee Street</p>
+                                            <p>Paris, France</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright text-center">
+                    <div class="container">
+                        <div class="social-icon">
+                            <ul>
+                                <li><a href="http://facebook.com"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="http://twitter.com"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="http://vimeo.com"><i class="fa fa-vimeo"></i></a></li>
+                                <li><a href="http://linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="http://instagram.com"><i class="fa fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                        <p>Copyright &copy; 2015 - 2016. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/plugin.js"></script>
+        <script type="text/javascript" src="/js/main.js"></script>
+				{% block js %}{% endblock %}
+    </body>
 </html>
+{% endspaceless %}

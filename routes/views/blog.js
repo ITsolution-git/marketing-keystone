@@ -8,62 +8,18 @@ exports = module.exports = {
 		var locals = res.locals;
 		
 		// Init locals
-		locals.active = 'blog';
-		locals.filters = {
-			category: req.params.category
-		};
 		locals.data = {
 			posts: [],
-			categories: [],
-			recentPosts: []
+			recentPosts: [],
+			archives: [],
+			tags: []
 		};
-		
-		// Load all categories
-		view.on('init', function(next) {
-			
-			keystone.list('PostCategory').model.find().sort('name').exec(function(err, results) {
-				
-				if (err || !results.length) {
-					return next(err);
-				}
-				
-				locals.data.categories = results;
-				
-				// Load the counts for each category
-				async.each(locals.data.categories, function(category, next) {
-					
-					keystone.list('Post').model.count().where('categories').in([category.id]).exec(function(err, count) {
-						category.postCount = count;
-						next(err);
-					});
-					
-				}, function(err) {
-					next(err);
-				});
-				
-			});
-			
-		});
 		
 		view.on('init',function(next) {
 			keystone.list('Aggregate List').model.findOne({slug:'blog-tag-aggregator'}).exec(function(err,res){
 				locals.data.tags = res.items;
 				next(err);
 			});
-		});
-		
-		// Load the current category filter
-		view.on('init', function(next) {
-			
-			if (req.params.category) {
-				keystone.list('PostCategory').model.findOne({ key: locals.filters.category }).exec(function(err, result) {
-					locals.data.category = result;
-					next(err);
-				});
-			} else {
-				next();
-			}
-			
 		});
 		
 		view.on('init',function(next){
@@ -107,7 +63,6 @@ exports = module.exports = {
 			})
 			.sort('-publishedDate')
 			.exec(function(err, results) {
-				console.log(results);
 				locals.data.recentPosts = results;
 				next(err);
 			});
@@ -116,7 +71,6 @@ exports = module.exports = {
 		// Load the posts
 		view.on('init', function(next) {
 			
-			var query = req.query.search || false;
 			var tag = req.query.tag || false;
 			var archive = req.query.archive || false;
 			
@@ -129,35 +83,19 @@ exports = module.exports = {
 					}
 				})
 				
-			q.sort('-publishedDate').populate('author categories');
+			q.sort('-publishedDate').populate('author');
 			
-			if(query){
-				locals.data.searchTerm = query;
-				var exp = RegExp(query,'i');
-				q.and([
-					{ $or : [
-						{'title': { $regex: exp } },
-						{'content.extended': { $regex: exp } }
-					] },
-				]);
-			}
-			else if(archive){
+			if(archive){
 				var t = archive.split('-');
 				if(t.length == 2){
 					var d = new Date();
 					var year = parseInt(t[1]),
 					  month  = parseInt(t[0])-1,
 					  day   = 1;
-					console.log(year);
-					console.log(month);
-					console.log(day);
 					d.setFullYear(year,month,day);
 					var start = new Date(d.toISOString());//1st day of month
 					d.setMonth( d.getMonth() + 1);
 					var end  = new Date(d.toISOString());
-
-					console.log(start);
-					console.log(end);
 					q.where({
 						publishedDate:  { $gte: start, $lte: end }
 					});
@@ -170,10 +108,6 @@ exports = module.exports = {
 				locals.data.selectedTag = tag;
 				q.where({tags: tag});
 			}
-			else if (locals.data.category) {
-				q.where('categories').in([locals.data.category]);
-			}
-			
 			
 			q.exec(function(err, results) {
 				locals.data.posts = results;
@@ -198,34 +132,10 @@ exports = module.exports = {
 		};
 		locals.data = {
 			posts: [],
-			categories: []
+			recentPosts: [],
+			archives: [],
+			tags: []
 		};
-		
-		view.on('init', function(next) {
-			
-			keystone.list('PostCategory').model.find().sort('name').exec(function(err, results) {
-				
-				if (err || !results.length) {
-					return next(err);
-				}
-				
-				locals.data.categories = results;
-				
-				// Load the counts for each category
-				async.each(locals.data.categories, function(category, next) {
-					
-					keystone.list('Post').model.count().where('categories').in([category.id]).exec(function(err, count) {
-						category.postCount = count;
-						next(err);
-					});
-					
-				}, function(err) {
-					next(err);
-				});
-				
-			});
-		
-		});
 		
 		view.on('init',function(next){
 			
@@ -270,7 +180,7 @@ exports = module.exports = {
 			var q = keystone.list('Post').model.findOne({
 				state: 'published',
 				slug: locals.filters.post
-			}).populate('author categories');
+			}).populate('author');
 			
 			q.exec(function(err, result) {
 				locals.data.post = result;

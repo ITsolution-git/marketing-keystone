@@ -12,9 +12,66 @@ var h = new keystone.List('Home Settings',{
 
 h.add({
 	title: { type: String, default:'Home Settings', noedit: true},
-	products_bg: { type: Types.CloudinaryImage, label:'Products Section Background Image' },
-	testimonials_bg: { type: Types.CloudinaryImage, label:'Testimonials Section Background Image' },
-	stats_bg: { type: Types.CloudinaryImage, label:'Stats Section Background Image' },
+	header_bg: {
+		type: Types.LocalFile, 
+		dest: 'public/ul/',
+		allowedtypes: ['image/jpeg','image/png','image/gif','image/bmp'],
+		fileName: function(item,file){
+			var n = ''+item.title;
+			n = n.toLowerCase();
+			n = n.replace(/[^a-zA-Z0-9 ]/g,"").replace(' ','-');
+			return n + '.' + file.extension;
+		},
+		format: function(item, file){
+			return '<img src="../../ul/'+file.filename+'" />';
+		},
+		label:'Site Header Background Image' 
+	},
+	products_bg: {
+		type: Types.LocalFile, 
+		dest: 'public/ul/',
+		allowedtypes: ['image/jpeg','image/png','image/gif','image/bmp'],
+		fileName: function(item,file){
+			var n = ''+item.title;
+			n = n.toLowerCase();
+			n = n.replace(/[^a-zA-Z0-9 ]/g,"").replace(' ','-');
+			return n + '.' + file.extension;
+		},
+		format: function(item, file){
+			return '<img src="../../ul/'+file.filename+'" />';
+		},
+		label:'Products Section Background Image' 
+	},
+	testimonials_bg: {
+		type: Types.LocalFile, 
+		dest: 'public/ul/',
+		allowedtypes: ['image/jpeg','image/png','image/gif','image/bmp'],
+		fileName: function(item,file){
+			var n = ''+item.title;
+			n = n.toLowerCase();
+			n = n.replace(/[^a-zA-Z0-9 ]/g,"").replace(' ','-');
+			return n + '.' + file.extension;
+		},
+		format: function(item, file){
+			return '<img src="../../ul/'+file.filename+'" />';
+		},
+		label:'Testimonials Section Background Image' 
+	},
+	stats_bg: {
+		type: Types.LocalFile, 
+		dest: 'public/ul/',
+		allowedtypes: ['image/jpeg','image/png','image/gif','image/bmp'],
+		fileName: function(item,file){
+			var n = ''+item.title;
+			n = n.toLowerCase();
+			n = n.replace(/[^a-zA-Z0-9 ]/g,"").replace(' ','-');
+			return n + '.' + file.extension;
+		},
+		format: function(item, file){
+			return '<img src="../../ul/'+file.filename+'" />';
+		},
+		label:'Stats Section Background Image' 
+	}
 });
 
 h.register();

@@ -34,12 +34,26 @@ var routes = importRoutes('./views');
 
 // Setup Route Bindings
 exports = module.exports = function (app) {
-	// Views
+
+	
+	//homepage
 	app.get('/', routes.index);
+	
+	//about
+	app.get('/about',routes.about);
+	
+	//contact
+	app.all('/contact', routes.contact);
+	
+	//blog
 	app.get('/blog/:category?', routes.blog.list);
 	app.get('/blog/post/:post', routes.blog.single);
-	app.get('/gallery', routes.gallery);
-	app.all('/contact', routes.contact);
+	
+	//products
+	app.get('/products', routes.products.list);
+	app.get('/products/:slug', routes.products.single);
+	
+	
 	
 	
 	//mongo express

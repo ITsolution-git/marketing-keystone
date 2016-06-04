@@ -1,0 +1,33 @@
+<div class="testimonial wrapper with-bg" style="background-image: url('/ul/{{settings.testimonials_bg.filename}}');">
+		<div class="container">
+				<div class="row">
+						<div class="section-title text-center wow fadeIn">
+								<h2>Testimonials</h2>
+						</div>
+						
+						<div class="owl-carousel wow fadeIn" data-wow-delay="0.5s">
+							{% for item in testimonials %}
+							<div class="testimonial-item">
+									<p>{{item.text}}</p>
+
+									<div class="client-info">
+											<img src="/ul/{{item.author.image.filename}}" alt="" style="width:68px;height:68px;border-radius:100%;" />
+											<div class="client-details">
+													<h3>{{item.author.name}}</h3>
+													<p>{{item.author.title}}</p>
+											</div>
+									</div>
+							</div>
+							{% endfor %}
+						</div>
+
+						<div class="our-partner">
+								{% for item in partners %}
+								<div class="partner-logo col-md-15 wow fadeIn" data-wow-delay="{{ (loop.index * 3) / 10 }}s">
+										<a href="{{item.company.link}}" target="_blank"><img src="/ul/{{item.company.logo.filename}}" alt="{{item.company.name}}" /></a>
+								</div>
+								{% endfor %}
+						</div>
+				</div>
+		</div>
+</div>

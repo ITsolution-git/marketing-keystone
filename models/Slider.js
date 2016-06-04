@@ -1,16 +1,30 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
-//faq categories
 var Slider = new keystone.List('Slider',{
 	map: { name: 'header' },
-	sortable: true
+	sortable: true,
+	autocreate: true
 });
 
 Slider.add({
-	header: {type: String, label: 'Header Text'},
+	header: {type: String, label: 'Header Text',default:'Untitled Slide'},
+	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
 	subheader: {type: Types.Html, wysiwyg: true, height: 150, label: 'Subheader Text'},
-	image: { type: Types.CloudinaryImage, label: 'Background Image' },
+	image: {
+		type: Types.LocalFile, 
+		dest: 'public/ul/',
+		allowedtypes: ['image/jpeg','image/png','image/gif','image/bmp'],
+		fileName: function(item,file){
+			var n = ''+item.title;
+			n = n.toLowerCase();
+			n = n.replace(/[^a-zA-Z0-9 ]/g,"").replace(' ','-');
+			return n + '.' + file.extension;
+		},
+		format: function(item, file){
+			return '<img src="../../ul/'+file.filename+'" />';
+		}
+	},
 	/* 
 	  button visibility
 	  keystone doesnt support nested dependsOn yet, so it gets its own top level field for now.

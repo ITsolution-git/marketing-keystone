@@ -1,82 +1,91 @@
 {% extends "../layouts/default.twig" %}
-
-{% block intro %}
-	<div class="container">
-		<h1>Contact Us</h1>
-	</div>
-{% endblock %}
-
 {% block content %}
-	<div class="container">
-		{% if enquirySubmitted %}
-			<h3>Thanks for getting in touch.</h3>
-		{% else %}
-			<div class="row">
-				<div class="col-sm-8 col-md-6">
-					<form method="post">
-						<input type="hidden" name="action" value="contact">
-						{% set className = "" %}
-						{% if validationErrors.name %}
-							{% set className = "has-error" %}
-						{% endif %}
-						<div class="form-group {{ className }}">
-							<label>
-								<span>Name</span>
-								<input type="text" name="name.full" value="{{ formData['name.full'] | default('') }}" class="form-control">
-							</label>
+<!-- PAGE TITLE START
+============================================= -->
+<section class="page-title wrapper clearfix" style="background-image: url('/ul/{{settings.header_bg.filename}}');">
+		<div class="container">
+				<div class="row">
+						<div class="title-wrap wow fadeIn" data-wow-delay="1s">
+								<h1>Contact</h1>
+								<div class="breadcrumbs">
+										<p>You Are Here : 
+										<span><a href="/">Home</a></span>
+										<span class="arrow"><i class="icon icon-arrow-right"></i></span>
+										<span>Contact</span></p>
+								</div>
 						</div>
-						{% set className = "" %}
-						{% if validationErrors.email %}
-							{% set className = "has-error" %}
-						{% endif %}
-						<div class="form-group {{ className }}">
-							<label>
-								<span>Email</span>
-								<input type="email" name="email" value="{{ formData.email | default('') }}" class="form-control">
-							</label>
-						</div>
-						<div class="form-group">
-							<label>
-								<span>Phone</span>
-								<input type="text" name="phone" value="{{ formData.phone | default('') }}" placeholder="(optional)" class="form-control">
-							</label>
-						</div>
-						{% set className = "" %}
-						{% if validationErrors.enquiryType %}
-							{% set className = "has-error" %}
-						{% endif %}
-						<div class="form-group {{ className }}">
-							<label>
-								<span>What are you contacting us about?</span>
-								<select name="enquiryType" class="form-control">
-									<option value="">(select one)</option>
-									{% for type in enquiryTypes %}
-										{% set selected = "" %}
-										{% if formData.enquiryType == type.value %}
-											{% set selected = " selected" %}
-										{% endif %}
-										<option value="{{ type.value }}"{{ selected }}>{{ type.label }}</option>
-									{% endfor %}
-								</select>
-						</div>
-						{% set className = "" %}
-						{% if validationErrors.message %}
-							{% set className = "has-error" %}
-						{% endif %}
-						<div class="form-group {{ className }}">
-							<label>
-								<span>Message</span>
-								<textarea name="message" placeholder="Leave us a message..." rows="4" class="form-control">
-									{{ formData.message }}
-								</textarea>
-							</label>
-						</div>
-						<div class="form-actions">
-							<button type="submit" class="btn btn-primary">Send</button>
-						</div>
-					</form>
 				</div>
-			</div>
-		{% endif %}
-	</div>
+		</div>
+</section>
+<!-- PAGE TITLE END -->
+
+<!-- CONTENT START
+============================================= -->
+<section id="content" class="clearfix">
+		<!-- SINGLE SERVICES START
+		============================================= -->
+		<div class="contact-page wrapper bg-color">
+				<div class="container">
+						<div class="row">
+								<div class="contact-wrap row">
+										<div class="contact-details col-md-4">
+												<div class="address wow fadeInLeft" data-wow-delay="0.3s">
+														<h4 class="title">Our Office Address</h4>
+														<p>Boulevard des Capucines</p>
+														<p>356, Coffee Street</p>
+														<p>Paris, France</p>
+														<p>Telephone : + 1 555 356 876</p>
+														<p>Email : info@themesawesome.com</p>
+												</div>
+												<div class="hours wow fadeInLeft" data-wow-delay="0.6s">
+														<h4 class="title">Our Office Hours</h4>
+														<p>Monday : <span>08.00 - 16.00</span></p>
+														<p>Tuesday : <span>08.00 - 16.00</span></p>
+														<p>Wednesday : <span>08.00 - 16.00</span></p>
+														<p>Thursday : <span>08.00 - 16.00</span></p>
+														<p>Friday : <span>08.00 - 16.00</span></p>
+														<p>Saturday : <span>08.00 - 16.00</span></p>
+												</div>
+										</div>
+
+										<div class="contact-form col-md-8">
+												<form method="post" class="row"> 
+														<input type="hidden" name="action" value="contact">
+														<p class="name col-md-6">
+																<label>Name</label>
+																<input type="text" name="name.full">
+														</p>
+														<p class="email col-md-6">
+																<label>Email</label>
+																<input type="text" name="email">
+														</p>
+														<p class="telephone col-md-6">
+																<label>Telephone</label>
+																<input type="text" name="telephone">
+														</p>
+														<p class="subject col-md-6">
+																<label>Subject</label>
+																<input type="text" name="subject">
+														</p>
+														<p class="message col-md-12">
+																<label>Message</label>
+																<textarea name="message" cols="45" rows="7"></textarea>
+														</p>
+
+														<p class="col-md-12">
+																<a href="#" class="button-normal" onclick="$(this).parents('form').trigger('submit'); return false;">Send Message</a>
+														</p>
+												</form>
+										</div>
+								</div>
+						</div>
+				</div>
+		</div>
+
+		<div class="map">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7921.211728581471!2d107.636263!3d-6.937619!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e86e2acbf353%3A0x68e3efb164a5f3de!2sJl.+Aries%2C+Batununggal%2C+Kota+Bandung%2C+Jawa+Barat+40275%2C+Indonesia!5e0!3m2!1sen!2sid!4v1449826718370" allowfullscreen></iframe>
+		</div>
+		<!-- SINGLE SERVICES END -->
+</section>
+<!-- CONTENT END -->
 {% endblock %}

@@ -19,21 +19,59 @@ a.add({
 		gallery: { type: Types.Relationship, ref: 'Gallery', index: true}
 	},
 	block1: {
-		image: { type: Types.CloudinaryImage},
+		image: {
+			type: Types.LocalFile, 
+			dest: 'public/ul/',
+			allowedtypes: ['image/jpeg','image/png','image/gif','image/bmp'],
+			fileName: function(item,file){
+				var n = ''+item.title;
+				n = n.toLowerCase();
+				n = n.replace(/[^a-zA-Z0-9 ]/g,"").replace(' ','-');
+				return n + '.' + file.extension;
+			},
+			format: function(item, file){
+				return '<img src="../../ul/'+file.filename+'" />';
+			}
+		},
 		title: { type: String},
 		text: { type: Types.Textarea }
 	},
 	block2: {
-		image: { type: Types.CloudinaryImage},
+		image: {
+			type: Types.LocalFile, 
+			dest: 'public/ul/',
+			allowedtypes: ['image/jpeg','image/png','image/gif','image/bmp'],
+			fileName: function(item,file){
+				var n = ''+item.title;
+				n = n.toLowerCase();
+				n = n.replace(/[^a-zA-Z0-9 ]/g,"").replace(' ','-');
+				return n + '.' + file.extension;
+			},
+			format: function(item, file){
+				return '<img src="../../ul/'+file.filename+'" />';
+			}
+		},
 		title: { type: String},
 		text: { type: Types.Textarea }
 	},
 	block3: {
-		image: { type: Types.CloudinaryImage},
+		image: {
+			type: Types.LocalFile, 
+			dest: 'public/ul/',
+			allowedtypes: ['image/jpeg','image/png','image/gif','image/bmp'],
+			fileName: function(item,file){
+				var n = ''+item.title;
+				n = n.toLowerCase();
+				n = n.replace(/[^a-zA-Z0-9 ]/g,"").replace(' ','-');
+				return n + '.' + file.extension;
+			},
+			format: function(item, file){
+				return '<img src="../../ul/'+file.filename+'" />';
+			}
+		},
 		title: { type: String},
 		text: { type: Types.Textarea }
 	},
-	staff: { type: Types.Relationship, ref: 'Staff Member', index: true, many: true, label:'Our Leaders'},
 });
 
 a.register();
