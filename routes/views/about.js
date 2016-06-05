@@ -24,28 +24,9 @@ exports = module.exports = function(req,res){
 			next(err);
 		});
 	});
-	
-	// load six most recent posts
+		
 	view.on('init', function(next) {
-		keystone.list('Post').model.find({
-				'state': 'published'
-			})
-		.sort('-publishedDate')
-		.limit(6)
-		.lean()
-		.exec(function(err, results) {
-			var months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-			for(var i=0;i<results.length;i++){
-				
-				var d = new Date(results[i].publishedDate).toISOString().split('T')[0].split('-');
-				var month = months[parseInt(d[1])];
-				var day = d[2];
-				results[i].publishedDate2 = {
-					month: month,
-					day: day
-				};
-				
-			}
+		keystone.list('Post').model.find({state: 'published'}).sort('-publishedDate').limit(2).exec(function(err, results) {
 			locals.recentPosts = results;
 			next(err);
 		});

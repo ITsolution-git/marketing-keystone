@@ -182,7 +182,7 @@
 										<div class="post-item">
 												<div class="post-thumb">
 														<a href="/blog/post/{{item.slug}}">
-																<img src="/ul/{{item.image.filename}}" alt="" />
+																<img src="/ul/{{item.image.filename}}" style="height:247px" alt="" />
 																<div class="overlay"></div>
 														</a>
 												</div>
@@ -194,7 +194,7 @@
 														</div>
 														<div class="content-wrap">
 																<h4>{{item.title}}</h4>
-																<p class="excerpt">{{item.content.brief}}</p>
+																<p class="excerpt">{{item.content.brief|striptags|slice(0,180)~'...'}}</p>
 																<a href="/blog/post/{{item.slug}}" class="button-normal with-icon">
 																		Read More
 																		<i class="icon icon-arrow-right"></i>

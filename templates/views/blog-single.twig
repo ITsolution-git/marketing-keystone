@@ -1,83 +1,64 @@
 {% extends '../layouts/default.twig' %}
 {% block content %}
-<!-- PAGE TITLE START
-============================================= -->
 <section class="page-title wrapper clearfix" style="background-image: url('/ul/{{settings.header_bg.filename}}');">
-		<div class="container">
-				<div class="row">
-						<div class="title-wrap wow fadeIn" data-wow-delay="1s">
-								<h1>Single Post</h1>
-								<div class="breadcrumbs">
-										<p>You Are Here : 
-										<span><a href="index.html">Home</a></span>
-										<span class="arrow"><i class="icon icon-arrow-right"></i></span>
-										<span><a href="blog.html">Blog</a></span>
-										<span class="arrow"><i class="icon icon-arrow-right"></i></span>
-										<span>Single Post</span>
-								</div>
-						</div>
+	<div class="container">
+		<div class="row">
+			<div class="title-wrap wow fadeIn" data-wow-delay="1s">
+				<h1>{{item.title}}</h1>
+				<div class="breadcrumbs">
+					<p>You Are Here : 
+					<span><a href="/">Home</a></span>
+					<span class="arrow"><i class="icon icon-arrow-right"></i></span>
+					<span><a href="/blog">Blog</a></span>
+					<span class="arrow"><i class="icon icon-arrow-right"></i></span>
+					<span>Single Post</span>
 				</div>
+			</div>
 		</div>
+	</div>
 </section>
-<!-- PAGE TITLE END -->
-
-<!-- CONTENT START
-============================================= -->
+{% set item = data.post %}
 <section id="content" class="clearfix">
-		<!-- SERVICES START
-		============================================= -->
-		<div class="blog single-post wrapper bg-color">
-				<div class="container">
-						<div class="row">
-								<div class="blog-wrap row">
-										<div class="post col-md-9">
-												<div class="post-item">
-														<div class="post-thumb">
-																<a href="single-post.html">
-																		<img src="img/content/blog-md-1.jpg" alt="" />
-																		<div class="overlay"></div>
-																</a>
-														</div>
+	<div class="blog single-post wrapper bg-color">
+		<div class="container">
+			<div class="row">
+				<div class="blog-wrap row">
+					<div class="post col-md-9">
+						<div class="post-item">
+							<div class="post-thumb">
+								<img src="/ul/{{item.image.filename}}" alt="" />
+							</div>
 
-														<a href="single-post.html" class="post-title">
-																<h3>Lorem ipsum Dolor Sit Amet</h3>
-														</a>
+							<a href="/blog/post/{{item.slug}}" class="post-title">
+								<h3>{{item.title}}</h3>
+							</a>
 
-														<div class="meta">
-																<span class="author"><i class="fa fa-user"></i> mochreza</span>
-																<span class="date"><i class="fa fa-calendar"></i> 30 May 2015</span>
-																<span class="views"><i class="fa fa-eye"></i> 95 Views</span>
-																<span class="comments"><i class="fa fa-comment"></i> 2 Comments</span>
-																<span class="tags last"><i class="fa fa-tag"></i> Business, Warehouse</span>
-														</div>
+							<div class="meta">
+								<span class="date"><i class="fa fa-calendar"></i> {{item.publishedDate|date('d M Y')}}</span>
+								<span class="tags last"><i class="fa fa-tag"></i> {% for tag in item.tags%}{{tag}}{% if loop.last == false %},{%endif%}{%endfor%}</span>
+							</div>
 
-														<div class="text-contet">
-																<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some forms by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual.</p>
-
-																<blockquote>Michel ivauedaus rutrum mi utercture aliquam In habitasse platore dictumst. Integer sagittis  vulputate  similique sunt in culpa qui officia deserunt.</blockquote>
-
-																<p>Who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it.</p>
-														</div>
-
-														<div class="share">
-																<span>Share : </span>
-																<ul>
-																		<li><a href="http://facebook.com"><i class="fa fa-facebook"></i></a></li>
-																		<li><a href="http://twitter.com"><i class="fa fa-twitter"></i></a></li>
-																		<li><a href="http://tumblr.com"><i class="fa fa-tumblr"></i></a></li>
-																		<li><a href="http://vimeo.com"><i class="fa fa-vimeo"></i></a></li>
-																		<li><a href="http://linkedin.com"><i class="fa fa-linkedin"></i></a></li>
-																</ul>
-														</div>
-												</div>
-
-										</div>
-										{% include '../mixins/blog-aside.twig' %}
-								</div>
+							<div class="text-contet">
+								{{item.content.extended}}
+							</div>
+							<!--
+							<div class="share">
+								<span>Share : </span>
+								<ul>
+									<li><a href="http://facebook.com"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="http://twitter.com"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="http://tumblr.com"><i class="fa fa-tumblr"></i></a></li>
+									<li><a href="http://vimeo.com"><i class="fa fa-vimeo"></i></a></li>
+									<li><a href="http://linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+								</ul>
+							</div>
+							-->
 						</div>
+					</div>
+					{% include '../mixins/blog-aside.twig' %}
 				</div>
+			</div>
 		</div>
-		<!-- SERVICES END -->
+	</div>
 </section>
-<!-- CONTENT END -->
 {% endblock %}

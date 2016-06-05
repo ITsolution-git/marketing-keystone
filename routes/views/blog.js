@@ -10,14 +10,32 @@ exports = module.exports = {
 		// Init locals
 		locals.data = {
 			posts: [],
-			recentPosts: [],
-			archives: [],
-			tags: []
 		};
 		
+		view.on('init',function(next){
+			keystone.list('Product').model.find({state:'published',nav: true}).select('title slug').exec(function(err,result){
+				locals.productLinks = result;
+				next(err);
+			});
+		});
+		
+		view.on('init',function(next){
+			keystone.list('Home Settings').model.findOne().exec(function(err,result){
+				locals.settings = result;
+				next(err);
+			});
+		});
+		
+		view.on('init',function(next){
+			keystone.list('Footer').model.findOne().exec(function(err,result){
+				locals.footer = result;
+				next(err);
+			});
+		});
+		
 		view.on('init',function(next) {
-			keystone.list('Aggregate List').model.findOne({slug:'blog-tag-aggregator'}).exec(function(err,res){
-				locals.data.tags = res.items;
+			keystone.list('Aggregate List').model.findOne({slug:'blog-tag-aggregator'}).exec(function(err,results){
+				locals.tags = results.items;
 				next(err);
 			});
 		});
@@ -47,23 +65,13 @@ exports = module.exports = {
 				});
 			}
 			
-			locals.data.archives = archives;
+			locals.archives = archives;
 			next();
 		});
 		
-		// load six most recent posts
 		view.on('init', function(next) {
-			keystone.list('Post').paginate({
-				page: 1,
-				perPage: 6,
-				maxPages: 1,
-				filters: {
-					'state': 'published'
-				}
-			})
-			.sort('-publishedDate')
-			.exec(function(err, results) {
-				locals.data.recentPosts = results;
+			keystone.list('Post').model.find({state: 'published'}).sort('-publishedDate').limit(6).exec(function(err, results) {
+				locals.recentPosts = results;
 				next(err);
 			});
 		});
@@ -125,7 +133,6 @@ exports = module.exports = {
 		var locals = res.locals;
 		
 		// Set locals
-		locals.active = 'blog';
 		
 		locals.filters = {
 			post: req.params.post
@@ -136,6 +143,34 @@ exports = module.exports = {
 			archives: [],
 			tags: []
 		};
+		
+				view.on('init',function(next){
+			keystone.list('Product').model.find({state:'published',nav: true}).select('title slug').exec(function(err,result){
+				locals.productLinks = result;
+				next(err);
+			});
+		});
+		
+		view.on('init',function(next){
+			keystone.list('Home Settings').model.findOne().exec(function(err,result){
+				locals.settings = result;
+				next(err);
+			});
+		});
+		
+		view.on('init',function(next){
+			keystone.list('Footer').model.findOne().exec(function(err,result){
+				locals.footer = result;
+				next(err);
+			});
+		});
+		
+		view.on('init',function(next) {
+			keystone.list('Aggregate List').model.findOne({slug:'blog-tag-aggregator'}).exec(function(err,results){
+				locals.tags = results.items;
+				next(err);
+			});
+		});
 		
 		view.on('init',function(next){
 			
@@ -162,13 +197,13 @@ exports = module.exports = {
 				});
 			}
 			
-			locals.data.archives = archives;
+			locals.archives = archives;
 			next();
 		});
 		
-		view.on('init',function(next) {
-			keystone.list('Aggregate List').model.findOne({slug:'blog-tag-aggregator'}).exec(function(err,res){
-				locals.data.tags = res.items;
+		view.on('init', function(next) {
+			keystone.list('Post').model.find({state: 'published'}).sort('-publishedDate').limit(6).exec(function(err, results) {
+				locals.recentPosts = results;
 				next(err);
 			});
 		});
@@ -189,17 +224,7 @@ exports = module.exports = {
 			
 		});
 		
-		// Load other posts
-		view.on('init', function(next) {
-			
-			var q = keystone.list('Post').model.find().where('state', 'published').sort('-publishedDate').populate('author').limit('4');
-			
-			q.exec(function(err, results) {
-				locals.data.posts = results;
-				next(err);
-			});
-			
-		});
+		
 		
 		// Render the view
 		view.render('blog-single');

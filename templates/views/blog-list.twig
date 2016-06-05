@@ -1,149 +1,92 @@
 {% extends '../layouts/default.twig' %}
 {% block content %}
-<!-- PAGE TITLE START
-============================================= -->
 <section class="page-title wrapper clearfix" style="background-image: url('/ul/{{settings.header_bg.filename}}');">
-		<div class="container">
-				<div class="row">
-						<div class="title-wrap wow fadeIn" data-wow-delay="1s">
-								<h1>Blog</h1>
-								<div class="breadcrumbs">
-										<p>You Are Here : 
-										<span><a href="index.html">Home</a></span>
-										<span class="arrow"><i class="icon icon-arrow-right"></i></span>
-										<span>Blog</span>
-								</div>
-						</div>
+	<div class="container">
+		<div class="row">
+			<div class="title-wrap wow fadeIn" data-wow-delay="1s">
+				<h1>Blog</h1>
+				<div class="breadcrumbs">
+					<p>You Are Here : 
+					<span><a href="/">Home</a></span>
+					<span class="arrow"><i class="icon icon-arrow-right"></i></span>
+					<span>Blog</span>
 				</div>
+			</div>
 		</div>
+	</div>
 </section>
-<!-- PAGE TITLE END -->
-
-<!-- CONTENT START
-============================================= -->
 <section id="content" class="clearfix">
-		<!-- SERVICES START
-		============================================= -->
-		<div class="blog wrapper bg-color">
-				<div class="container">
-						<div class="row">
-								<div class="blog-wrap row">
-										<div class="post col-md-9">
-												<div class="post-item wow fadeInUp">
-														<div class="post-thumb">
-																<a href="single-post.html">
-																		<img src="img/content/blog-md-1.jpg" alt="" />
-																		<div class="overlay"></div>
-																</a>
-														</div>
+	<div class="blog wrapper bg-color">
+		<div class="container">
+			<div class="row">
+				<div class="blog-wrap row">
+					<div class="post col-md-9">
+						{% for item in data.posts.results %}
+						<div class="post-item wow fadeInUp">
+							<div class="post-thumb">
+									<a href="/blog/post/{{item.slug}}">
+											<img src="/ul/{{item.image.filename}}" alt="" />
+											<div class="overlay"></div>
+									</a>
+							</div>
 
-														<a href="single-post.html" class="post-title">
-																<h3>Lorem ipsum Dolor Sit Amet</h3>
-														</a>
+							<a href="single-post.html" class="post-title">
+									<h3>{{item.title}}</h3>
+							</a>
 
-														<div class="meta">
-																<span class="author"><i class="fa fa-user"></i> mochreza</span>
-																<span class="date"><i class="fa fa-calendar"></i> 30 May 2015</span>
-																<span class="views"><i class="fa fa-eye"></i> 95 Views</span>
-																<span class="comments"><i class="fa fa-comment"></i> 2 Comments</span>
-																<span class="tags last"><i class="fa fa-tag"></i> Business, Warehouse</span>
-														</div>
+							<div class="meta">
+								<span class="date"><i class="fa fa-calendar"></i> {{item.publishedDate|date('d M Y')}}</span>
+								<span class="tags last"><i class="fa fa-tag"></i> {% for tag in item.tags %}{{tag}}{% if loop.last == false %},{%endif%}{%endfor%}</span>
+							</div>
 
-														<div class="excerpt">
-																<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some forms by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden</p>
-														</div>
+							<div class="excerpt">
+								{{item.content.brief}}
+							</div>
 
-														<a href="single-post.html" class="button-normal">Read More</a>
-												</div>
-
-												<div class="post-item wow fadeInUp">
-														<div class="post-thumb">
-																<a href="single-post.html">
-																		<img src="img/content/blog-md-2.jpg" alt="" />
-																		<div class="overlay"></div>
-																</a>
-														</div>
-
-														<a href="single-post.html" class="post-title">
-																<h3>Lorem ipsum Dolor Sit Amet</h3>
-														</a>
-
-														<div class="meta">
-																<span class="author"><i class="fa fa-user"></i> mochreza</span>
-																<span class="date"><i class="fa fa-calendar"></i> 30 May 2015</span>
-																<span class="views"><i class="fa fa-eye"></i> 95 Views</span>
-																<span class="comments"><i class="fa fa-comment"></i> 2 Comments</span>
-																<span class="tags last"><i class="fa fa-tag"></i> Business, Warehouse</span>
-														</div>
-
-														<div class="excerpt">
-																<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some forms by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden</p>
-														</div>
-
-														<a href="single-post.html" class="button-normal">Read More</a>
-												</div>
-
-												<div class="post-item wow fadeInUp">
-														<a href="single-post.html" class="post-title">
-																<h3>Lorem ipsum Dolor Sit Amet</h3>
-														</a>
-
-														<div class="meta">
-																<span class="author"><i class="fa fa-user"></i> mochreza</span>
-																<span class="date"><i class="fa fa-calendar"></i> 30 May 2015</span>
-																<span class="views"><i class="fa fa-eye"></i> 95 Views</span>
-																<span class="comments"><i class="fa fa-comment"></i> 2 Comments</span>
-																<span class="tags last"><i class="fa fa-tag"></i> Business, Warehouse</span>
-														</div>
-
-														<div class="excerpt">
-																<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some forms by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden</p>
-														</div>
-
-														<a href="single-post.html" class="button-normal">Read More</a>
-												</div>
-
-												<div class="post-item wow fadeInUp">
-														<div class="post-thumb">
-																<a href="single-post.html">
-																		<img src="img/content/blog-md-3.jpg" alt="" />
-																		<div class="overlay"></div>
-																</a>
-														</div>
-
-														<a href="single-post.html" class="post-title">
-																<h3>Lorem ipsum Dolor Sit Amet</h3>
-														</a>
-
-														<div class="meta">
-																<span class="author"><i class="fa fa-user"></i> mochreza</span>
-																<span class="date"><i class="fa fa-calendar"></i> 30 May 2015</span>
-																<span class="views"><i class="fa fa-eye"></i> 95 Views</span>
-																<span class="comments"><i class="fa fa-comment"></i> 2 Comments</span>
-																<span class="tags last"><i class="fa fa-tag"></i> Business, Warehouse</span>
-														</div>
-
-														<div class="excerpt">
-																<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some forms by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden</p>
-														</div>
-
-														<a href="single-post.html" class="button-normal">Read More</a>
-												</div>
-
-												<div class="pagination pull-right">
-														<span class="button active">1</span>
-														<span class="button"><a href="blog.html">2</a></span>
-														<span class="button last"><a href="blog.html">
-																<i class="fa fa-angle-double-right"></i>
-														</a></span>
-												</div>
-										</div>
-										{% include '../mixins/blog-aside.twig' %}
-								</div>
+							<a href="/blog/post/{{item.slug}}" class="button-normal">Read More</a>
 						</div>
+						{% endfor %}
+
+						{% if data.posts.totalPages > 1 %}
+						<div class="pagination pull-right">
+							{% if data.posts.previous %}
+							<span class="button">
+								<a href="?page={{ data.posts.previous }}">
+									<i class="fa fa-angle-double-left"></i>
+								</a>
+							</span>
+							{% else %}
+							<span class="button disabled">
+								<a href="?page={{ data.posts.previous }}">
+									<i class="fa fa-angle-double-left"></i>
+								</a>
+							</span>
+							{% endif %}
+							{% for p in data.posts.pages %}
+								<span class="button {% if data.posts.currentPage == p %}active{%endif%}">
+									<a href="?page={% if p == '...' %}{% if i %}{{ data.posts.totalPages }}{% else %}1{% endif %}{% else %}{{ p }}{% endif %}">{{ p }}</a>
+								</span>
+							{% endfor %}
+							{% if data.posts.next %}
+							<span class="button last">
+								<a href="?page={{ data.posts.next }}">
+									<i class="fa fa-angle-double-right"></i>
+								</a>
+							</span>
+							{% else %}
+							<span class="button last disabled">
+								<a href="?page={{ data.posts.totalPages }}">
+									<i class="fa fa-angle-double-right"></i>
+								</a>
+							</span>
+							{% endif %}
+						</div>
+						{% endif %}
+					</div>
+					{% include '../mixins/blog-aside.twig' %}
 				</div>
+			</div>
 		</div>
-		<!-- SERVICES END -->
+	</div>
 </section>
-<!-- CONTENT END -->
 {% endblock %}

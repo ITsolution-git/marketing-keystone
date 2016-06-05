@@ -55,7 +55,7 @@ Post.schema.post('save', function() {
 			}
 			if(i===results.length - 1 ){
 				console.log(allItems);
-				keystone.list('Aggregate List').model.update({ slug: 'tag-aggregator' },{items:allItems},{},function(err2,numAffected){});
+				keystone.list('Aggregate List').model.update({ slug: 'blog-tag-aggregator' },{items:allItems},{},function(err2,numAffected){});
 			}
 		}
 	});

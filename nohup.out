@@ -1,0 +1,81 @@
+[33m[nodemon] 1.9.2[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching: *.*[39m
+[32m[nodemon] starting `node keystone keystone.js`[39m
+{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
+js-bson: Failed to load c++ bson extension, using pure JS version
+Database connected
+Connecting to db...
+[ERROR-Server:31827] 1465086116046 [0] failed to authenticate against server localhost:27017 { type: 'error',
+  message: '[0] failed to authenticate against server localhost:27017',
+  className: 'Server',
+  pid: 31827,
+  date: 1465086116046 }
+
+------------------------------------------------
+KeystoneJS Started:
+Jeda is ready on port 3000
+------------------------------------------------
+
+{ [MongoError: could not authenticate] name: 'MongoError', message: 'could not authenticate' }
+Could not authenticate to database "db"
+Database db connected
+GET /keystone/stats 200 1034.410 ms
+GET /keystone/contacts 200 805.373 ms
+GET /keystone/products 200 688.914 ms
+GET / 200 164.143 ms
+GET / 304 87.100 ms
+GET /products/fake-product-1 200 69.901 ms
+GET /contact 200 33.661 ms
+GET /blog 200 72.217 ms
+GET /about 200 78.618 ms
+GET /products/fake-product-1 200 49.547 ms
+GET / 200 205.047 ms
+GET /about 200 53.532 ms
+GET /products/fake-product-1 304 20.821 ms
+GET /ul/css/bootstrap.css 404 2.324 ms
+GET /ul/css/main.css 404 1.097 ms
+GET /ul/css/adaptive.css 404 1.323 ms
+GET /ul/css/pushy.css 404 2.175 ms
+GET /ul/css/font-awesome.css 404 3.066 ms
+GET /ul/css/animate.css 404 1.358 ms
+GET /ul/rs-plugin/css/settings.css 404 1.629 ms
+GET /ul/js/jquery.min.js 404 1.577 ms
+GET /ul/js/wow.min.js 404 1.974 ms
+GET /ul/js/all_scr.js 404 2.518 ms
+GET /ul/js/bootstrap.min.js 404 2.585 ms
+GET /ul/js/map.js 404 0.853 ms
+GET /ul/js/infobox.js 404 1.464 ms
+GET /ul/rs-plugin/js/jquery.themepunch.tools.min.js 404 1.677 ms
+GET /ul/rs-plugin/js/jquery.themepunch.revolution.min.js 404 2.056 ms
+GET /ul/js/jquery.parallax-0.2-min.js 404 1.902 ms
+GET /ul/img/avatar/ava_16.jpg 404 3.184 ms
+GET /ul/img/logoin.png 404 1.993 ms
+GET /blog 200 27.358 ms
+GET /contact 200 16.945 ms
+GET / 304 68.221 ms
+GET /blog/post/post-3 200 36.071 ms
+Killed
+[33m[nodemon] 1.9.2[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching: *.*[39m
+[32m[nodemon] starting `node keystone keystone.js`[39m
+{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
+js-bson: Failed to load c++ bson extension, using pure JS version
+Database connected
+Connecting to db...
+[ERROR-Server:1269] 1465154195679 [0] failed to authenticate against server localhost:27017 { type: 'error',
+  message: '[0] failed to authenticate against server localhost:27017',
+  className: 'Server',
+  pid: 1269,
+  date: 1465154195679 }
+
+------------------------------------------------
+KeystoneJS Started:
+Jeda is ready on port 3000
+------------------------------------------------
+
+{ [MongoError: could not authenticate] name: 'MongoError', message: 'could not authenticate' }
+Could not authenticate to database "db"
+Database db connected
+GET / 200 3623.980 ms

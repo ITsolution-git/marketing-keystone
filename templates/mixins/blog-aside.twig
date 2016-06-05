@@ -1,99 +1,43 @@
 <div class="sidebar col-md-3">
-		<div class="widget recent-post">
-				<h4 class="title">Recent Post</h4>
-				<div class="recent-post">
-						<div class="post-item">
-								<a href="single-post.html">
-										<div class="post-thumb">
-												<img src="img/content/recent-post-thumb-1.jpg" alt="" />
-												<div class="overlay"></div>
-										</div>
-								</a>
-								<div class="post-content">
-										<a href="single-post.html">
-												<h4>Lorem ipsum Dolor Sit Amet</h4>
-										</a>
-										<div class="meta">
-												<span class="date">02 August, 2015</span>
-										</div>
-								</div>
+	<div class="widget recent-post">
+		<h4 class="title">Recent Posts</h4>
+		<div class="recent-post">
+				{% for item in recentPosts %}
+				<div class="post-item">
+					<a href="/blog/post/{{item.slug}}">
+						<div class="post-thumb">
+							<img src="/ul/{{item.image.filename}}" alt="" />
+							<div class="overlay"></div>
 						</div>
-
-						<div class="post-item">
-								<a href="single-post.html">
-										<div class="post-thumb">
-												<img src="img/content/recent-post-thumb-2.jpg" alt="" />
-												<div class="overlay"></div>
-										</div>
-								</a>
-								<div class="post-content">
-										<a href="single-post.html">
-												<h4>Lorem ipsum Dolor Sit Amet</h4>
-										</a>
-										<div class="meta">
-												<span class="date">02 August, 2015</span>
-										</div>
-								</div>
+					</a>
+					<div class="post-content">
+						<a href="/blog/post/{{item.slug}}">
+							<h4>{{item.title}}</h4>
+						</a>
+						<div class="meta">
+							<span class="date">{{item.publishedDate|date('d M, Y')}}</span>
 						</div>
-
-						<div class="post-item">
-								<a href="single-post.html">
-										<div class="post-thumb">
-												<img src="img/content/recent-post-thumb-3.jpg" alt="" />
-												<div class="overlay"></div>
-										</div>
-								</a>
-								<div class="post-content">
-										<a href="single-post.html">
-												<h4>Lorem ipsum Dolor Sit Amet</h4>
-										</a>
-										<div class="meta">
-												<span class="date">02 August, 2015</span>
-										</div>
-								</div>
-						</div>
-
-						<div class="post-item">
-								<a href="single-post.html">
-										<div class="post-thumb">
-												<img src="img/content/recent-post-thumb-4.jpg" alt="" />
-												<div class="overlay"></div>
-										</div>
-								</a>
-								<div class="post-content">
-										<a href="single-post.html">
-												<h4>Lorem ipsum Dolor Sit Amet</h4>
-										</a>
-										<div class="meta">
-												<span class="date">02 August, 2015</span>
-										</div>
-								</div>
-						</div>
+					</div>
 				</div>
+				{% endfor %}
+			</div>
 		</div>
 
 		<div class="widget archives">
-				<h4 class="title">Archives</h4>
-				<ul>
-						<li><a href="blog.html">September 2015</a></li>
-						<li><a href="blog.html">October 2015</a></li>
-						<li><a href="blog.html">November 2015</a></li>
-						<li><a href="blog.html">Desember 2015</a></li>
-				</ul>
+			<h4 class="title">Archives</h4>
+			<ul>
+				{% for item in archives %}
+				<li><a href='/blog{{item.url}}'>{{item.title}}</a></li>
+				{% endfor %}
+			</ul>
 		</div>
 
 		<div class="widget tags">
-				<h4 class="title">Tags</h4>
-				<div class="tag">
-						<a href="blog.html">Warehouse</a>
-						<a href="blog.html">Shipping</a>
-						<a href="blog.html">Packaging</a>
-						<a href="blog.html">Transport</a>
-						<a href="blog.html">Truck</a>
-						<a href="blog.html">Company</a>
-						<a href="blog.html">Tips</a>
-						<a href="blog.html">Business</a>
-						<a href="blog.html">Courier</a>
-				</div>
+			<h4 class="title">Tags</h4>
+			<div class="tag">
+				{% for tag in tags %}
+				<a href='/blog?tag={{tag|url_encode}}' class='tag-link-17 tag-link-position-1' title='{{tag}}'>{{tag}}</a>
+				{% endfor %}
+			</div>
 		</div>
 </div>
