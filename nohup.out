@@ -268,3 +268,23 @@ Jeda is ready on port 3000
 { [MongoError: could not authenticate] name: 'MongoError', message: 'could not authenticate' }
 Could not authenticate to database "db"
 Database db connected
+[33m[nodemon] 1.9.2[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching: *.*[39m
+[32m[nodemon] starting `node keystone keystone.js`[39m
+module.js:327
+    throw err;
+    ^
+
+Error: Cannot find module 'unicode/category/So'
+    at Function.Module._resolveFilename (module.js:325:15)
+    at Function.Module._load (module.js:276:25)
+    at Module.require (module.js:353:17)
+    at require (internal/module.js:12:17)
+    at symbols (/usr/share/nginx/html/jeda/node_modules/slug/slug.js:6:16)
+    at /usr/share/nginx/html/jeda/node_modules/slug/slug.js:199:5
+    at Object.<anonymous> (/usr/share/nginx/html/jeda/node_modules/slug/slug.js:212:2)
+    at Module._compile (module.js:409:26)
+    at Object.Module._extensions..js (module.js:416:10)
+    at Module.load (module.js:343:32)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m

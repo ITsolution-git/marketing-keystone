@@ -55,6 +55,15 @@
 
 	j. RESTART NGINX
 		sudo service nginx restart
+		
+	k. Reinstall unicode (in your install directory)
+		cd node_modules/slug
+		npm install unicode
+	
+	l. Rebuild node-sass
+		npm rebuild node-sass
 
-	k. RUN PROGRAM
+	m. RUN PROGRAM
 		./run.sh
+
+		
