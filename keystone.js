@@ -5,17 +5,29 @@ require('dotenv').load();
 // Require keystone
 var keystone = require('keystone');
 var Twig = require('twig');
-// Initialise Keystone with your project's configuration.
-// See http://keystonejs.com/guide/config for available options
-// and documentation.
 
+
+//set custom email classes arguments
+keystone.set('custom email',{
+	sendFrom: 'no-reply@jeda.hogs.xyz',
+	twig: {
+		path: './templates/emails/'
+	},
+	mailgun: {
+		apiKey: 'key-2b1d1709d3206060e9465097f142c2aa',
+		domain: 'jeda.hogs.xyz'
+	},
+	base_url: (keystone.get('env') == 'production') ? 'http://fridacommunity.org' : 'http://jeda.hogs.xyz'
+});
+
+//keystone init
 keystone.init({
 
 	'name': 'Jeda',
 	'brand': 'Jeda',
 
 	'sass': 'public',
-'static': 'public',
+	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'twig',
@@ -52,7 +64,6 @@ keystone.set('locals', {
 // Load your project's Routes
 
 keystone.set('routes', require('./routes'));
-
 
 
 // Configure the navigation bar in Keystone's Admin UI

@@ -79,3 +79,132 @@ Jeda is ready on port 3000
 Could not authenticate to database "db"
 Database db connected
 GET / 200 3623.980 ms
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node keystone keystone.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node keystone keystone.js`[39m
+{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
+js-bson: Failed to load c++ bson extension, using pure JS version
+Database connected
+Connecting to db...
+[ERROR-Server:1339] 1465154425392 [0] failed to authenticate against server localhost:27017 { type: 'error',
+  message: '[0] failed to authenticate against server localhost:27017',
+  className: 'Server',
+  pid: 1339,
+  date: 1465154425392 }
+
+------------------------------------------------
+KeystoneJS Started:
+Jeda is ready on port 3000
+------------------------------------------------
+
+{ [MongoError: could not authenticate] name: 'MongoError', message: 'could not authenticate' }
+Could not authenticate to database "db"
+Database db connected
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node keystone keystone.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node keystone keystone.js`[39m
+{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
+js-bson: Failed to load c++ bson extension, using pure JS version
+Database connected
+Connecting to db...
+[ERROR-Server:1391] 1465154935566 [0] failed to authenticate against server localhost:27017 { type: 'error',
+  message: '[0] failed to authenticate against server localhost:27017',
+  className: 'Server',
+  pid: 1391,
+  date: 1465154935566 }
+
+------------------------------------------------
+KeystoneJS Started:
+Jeda is ready on port 3000
+------------------------------------------------
+
+{ [MongoError: could not authenticate] name: 'MongoError', message: 'could not authenticate' }
+Could not authenticate to database "db"
+Database db connected
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node keystone keystone.js`[39m
+{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
+js-bson: Failed to load c++ bson extension, using pure JS version
+Database connected
+Connecting to db...
+[ERROR-Server:1427] 1465155017123 [0] failed to authenticate against server localhost:27017 { type: 'error',
+  message: '[0] failed to authenticate against server localhost:27017',
+  className: 'Server',
+  pid: 1427,
+  date: 1465155017123 }
+
+------------------------------------------------
+KeystoneJS Started:
+Jeda is ready on port 3000
+------------------------------------------------
+
+{ [MongoError: could not authenticate] name: 'MongoError', message: 'could not authenticate' }
+Could not authenticate to database "db"
+Database db connected
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node keystone keystone.js`[39m
+{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
+js-bson: Failed to load c++ bson extension, using pure JS version
+Database connected
+Connecting to db...
+[ERROR-Server:1454] 1465155080727 [0] failed to authenticate against server localhost:27017 { type: 'error',
+  message: '[0] failed to authenticate against server localhost:27017',
+  className: 'Server',
+  pid: 1454,
+  date: 1465155080727 }
+
+------------------------------------------------
+KeystoneJS Started:
+Jeda is ready on port 3000
+------------------------------------------------
+
+{ [MongoError: could not authenticate] name: 'MongoError', message: 'could not authenticate' }
+Could not authenticate to database "db"
+Database db connected
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node keystone keystone.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node keystone keystone.js`[39m
+{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
+js-bson: Failed to load c++ bson extension, using pure JS version
+Database connected
+Connecting to db...
+[ERROR-Server:1545] 1465155515476 [0] failed to authenticate against server localhost:27017 { type: 'error',
+  message: '[0] failed to authenticate against server localhost:27017',
+  className: 'Server',
+  pid: 1545,
+  date: 1465155515476 }
+
+------------------------------------------------
+KeystoneJS Started:
+Jeda is ready on port 3000
+------------------------------------------------
+
+{ [MongoError: could not authenticate] name: 'MongoError', message: 'could not authenticate' }
+Could not authenticate to database "db"
+Database db connected
+GET / 304 159.917 ms
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node keystone keystone.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node keystone keystone.js`[39m
+{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
+js-bson: Failed to load c++ bson extension, using pure JS version
+Database connected
+Connecting to db...
+[ERROR-Server:1650] 1465156295099 [0] failed to authenticate against server localhost:27017 { type: 'error',
+  message: '[0] failed to authenticate against server localhost:27017',
+  className: 'Server',
+  pid: 1650,
+  date: 1465156295099 }
+
+------------------------------------------------
+KeystoneJS Started:
+Jeda is ready on port 3000
+------------------------------------------------
+
+{ [MongoError: could not authenticate] name: 'MongoError', message: 'could not authenticate' }
+Could not authenticate to database "db"
+Database db connected

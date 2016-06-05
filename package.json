@@ -3,14 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "keystone": "^0.3.16",
     "async": "^1.5.0",
-    "underscore": "^1.8.3",
-	"twig":"^0.8.9",
-	
+    "dotenv": "^1.1.0",
+    "keystone": "^0.3.16",
+    "mailcomposer": "^3.9.0",
+    "mongo-express": "^0.30.59",
     "node-sass": "^3.3.2",
-    "node-sass-middleware": "^0.9.7", 
-    "dotenv": "^1.1.0"
+    "node-sass-middleware": "^0.9.7",
+    "twig": "^0.8.9",
+    "underscore": "^1.8.3"
   },
   "engines": {
     "node": ">=0.10.22",
