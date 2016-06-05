@@ -208,3 +208,23 @@ Jeda is ready on port 3000
 { [MongoError: could not authenticate] name: 'MongoError', message: 'could not authenticate' }
 Could not authenticate to database "db"
 Database db connected
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node keystone keystone.js`[39m
+{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
+js-bson: Failed to load c++ bson extension, using pure JS version
+Database connected
+Connecting to db...
+[ERROR-Server:1887] 1465157773023 [0] failed to authenticate against server localhost:27017 { type: 'error',
+  message: '[0] failed to authenticate against server localhost:27017',
+  className: 'Server',
+  pid: 1887,
+  date: 1465157773023 }
+
+------------------------------------------------
+KeystoneJS Started:
+Jeda is ready on port 3000
+------------------------------------------------
+
+{ [MongoError: could not authenticate] name: 'MongoError', message: 'could not authenticate' }
+Could not authenticate to database "db"
+Database db connected

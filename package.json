@@ -10,6 +10,7 @@
     "mongo-express": "^0.30.59",
     "node-sass": "^3.3.2",
     "node-sass-middleware": "^0.9.7",
+    "nodemon": "^1.9.2",
     "twig": "^0.8.9",
     "underscore": "^1.8.3"
   },
