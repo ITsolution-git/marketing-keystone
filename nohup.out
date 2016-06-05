@@ -288,3 +288,36 @@ Error: Cannot find module 'unicode/category/So'
     at Object.Module._extensions..js (module.js:416:10)
     at Module.load (module.js:343:32)
 [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[33m[nodemon] 1.9.2[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching: *.*[39m
+[32m[nodemon] starting `node keystone keystone.js`[39m
+[Error: /usr/share/nginx/html/jeda/node_modules/bson/build/Release/bson.node: invalid ELF header]
+js-bson: Failed to load c++ bson extension, using pure JS version
+Database connected
+Connecting to db...
+[ERROR-Server:21415] 1465160933215 [0] failed to authenticate against server localhost:27017 { type: 'error',
+  message: '[0] failed to authenticate against server localhost:27017',
+  className: 'Server',
+  pid: 21415,
+  date: 1465160933215 }
+
+------------------------------------------------
+KeystoneJS Started:
+Jeda is ready on port 3000
+------------------------------------------------
+
+{ [MongoError: could not authenticate] name: 'MongoError', message: 'could not authenticate' }
+Could not authenticate to database "db"
+Database db connected
+GET / 200 1712.392 ms
+GET / 304 111.186 ms
+GET /blog 200 77.273 ms
+GET /blog/post/an-awesome-post 200 52.376 ms
+GET /about 200 79.973 ms
+GET /products/fake-product-2 200 32.877 ms
+GET /contact 200 59.590 ms
+GET / 304 84.796 ms
+GET /products/fake-product-2 304 41.343 ms
+GET /products 200 93.063 ms
+GET /contact 304 107.212 ms

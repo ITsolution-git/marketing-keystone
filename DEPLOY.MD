@@ -59,9 +59,14 @@
 	k. Reinstall unicode (in your install directory)
 		cd node_modules/slug
 		npm install unicode
+		cd ../..
 	
 	l. Rebuild node-sass
 		npm rebuild node-sass
+	
+	n. install db backup
+		cd /db/jeda
+		mongorestore -d jeda ./
 
 	m. RUN PROGRAM
 		./run.sh
