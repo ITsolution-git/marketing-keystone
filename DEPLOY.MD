@@ -1,4 +1,4 @@
-THE FOLLOWING INSTRUCTIONS ARE FOR DEPLOYING ON UBUNTU 14.04
+### THE FOLLOWING INSTRUCTIONS ARE FOR DEPLOYING ON UBUNTU 14.04
 
 
 1. PREREQUISITES
@@ -33,25 +33,28 @@ THE FOLLOWING INSTRUCTIONS ARE FOR DEPLOYING ON UBUNTU 14.04
 		curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 		sudo apt-get install -y nodejs
 		
-	e. install git, create install directory, change owner of that directory to the user you created earlier, change to the install directory, clone repo into that directory
+	e. INSTALL npm and nodemon globally while logged in as root
+		npm install -g npm
+		npm install -g nodemon
+		
+	f. install git, create install directory, change owner of that directory to the user you created earlier, change to the install directory, clone repo into that directory
 		sudo apt-get install git
 		mkdir /path/to/where/you/want/to/install
 		chown <name of user here>:<name of user here> /path/towhere/you/want/to/install
 		cd /path/where/you/want/to/install
 		git clone https://<your user name here>@bitbucket.org/6bitconsulting/jeda.git
 
-	f. INSTALL NPM
+	g. INSTALL NPM
 		sudo npm install -g npm
 
-	g. INSTALL DEPENDENCIES
+	h. INSTALL DEPENDENCIES
 		npm install
 		
-	h. INSTALL NGINX CONFIG
+	i. INSTALL NGINX CONFIG
 		sudo cp nginx.conf /etc/nginx/nginx.conf
 
-	i. RESTART NGINX
+	j. RESTART NGINX
 		sudo service nginx restart
 
-	j. RUN PROGRAM
-
+	k. RUN PROGRAM
 		./run.sh
