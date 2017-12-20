@@ -2,6 +2,8 @@
 // customising the .env file in your project's root folder.
 require('dotenv').load();
 
+console.log(process.env);
+
 // Require keystone
 var keystone = require('keystone');
 var Twig = require('twig');
