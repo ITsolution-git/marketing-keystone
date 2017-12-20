@@ -9,15 +9,15 @@ var Twig = require('twig');
 
 //set custom email classes arguments
 keystone.set('custom email',{
-	sendFrom: 'no-reply@jeda.hogs.xyz',
+	sendFrom: process.env.NO_REPLY,
 	twig: {
 		path: './templates/emails/'
 	},
 	mailgun: {
-		apiKey: 'key-2b1d1709d3206060e9465097f142c2aa',
-		domain: 'jeda.hogs.xyz'
+		apiKey: process.env.MAILGUN_API_KEY,
+		domain: process.env.MAILGUN_DOMAIN
 	},
-	base_url: (keystone.get('env') == 'production') ? 'http://fridacommunity.org' : 'http://jeda.hogs.xyz'
+	base_url: process.env.BASE_URL
 });
 
 //keystone init
@@ -37,9 +37,9 @@ keystone.init({
 
 	'auto update': true,
 	'session': true,
+    'session store': 'redis',
 	'session store options':{
-		'host': '127.0.0.1',
-		'port': '6379',
+		'url':process.env.REDISTOGO_URL
 	},
 	'auth': true,
 	'user model': 'User',
