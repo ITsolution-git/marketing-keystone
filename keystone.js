@@ -27,7 +27,7 @@ keystone.init({
     'debug':true,
 	'name': 'Jeda',
 	'brand': 'Jeda',
-    'mongo':process.env.MONGOLAB_URL,
+    'mongo': process.env.MONGOLAB_URL,
 	'sass': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
@@ -46,6 +46,10 @@ keystone.init({
 	'user model': 'User',
 
 });
+
+keystone.set('mongo',process.env.MONGOLAB_URL);
+
+console.log(keystone.get('mongo'));
 
 // Load your project's Models
 
