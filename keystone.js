@@ -6,6 +6,8 @@ require('dotenv').load();
 var keystone = require('keystone');
 var Twig = require('twig');
 
+process.env.PORT = ~~process.env.PORT;
+
 
 //set custom email classes arguments
 keystone.set('custom email',{
@@ -78,4 +80,12 @@ keystone.set('nav', {
 
 // Start Keystone to connect to your database and initialise the web server
 
-keystone.start();
+keystone.start({
+  onStart: function(){
+      console.log('keystone running');
+  },
+  onError: function(e){
+      console.log('keystone error');
+      console.log(e.toString())
+  }
+});
