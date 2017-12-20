@@ -34,7 +34,7 @@ keystone.init({
 
 	'twig options':{ method: 'fs' },
 	'custom engine':Twig.render,
-
+    'mongo': process.env.MONGODB_URI,
     'db name':'heroku_pdv9r6fd',//name of db at mLab
 	'auto update': true,
 	'session': true,
