@@ -20,14 +20,12 @@ keystone.set('custom email',{
 	base_url: process.env.BASE_URL
 });
 
-var mongoose = require('mongoose');
-
 //keystone init
 keystone.init({
     'debug':true,
 	'name': 'Jeda',
 	'brand': 'Jeda',
-
+    'mongo':process.env.MONGOLAB_URL,
 	'sass': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
