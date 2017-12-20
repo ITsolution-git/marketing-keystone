@@ -24,7 +24,7 @@ var mongoose = require('mongoose');
 
 //keystone init
 keystone.init({
-
+    'debug':true,
 	'name': 'Jeda',
 	'brand': 'Jeda',
 
@@ -47,6 +47,8 @@ keystone.init({
 	'user model': 'User',
 
 });
+
+keystone.set('mongo',process.env.MONGODB_URI);
 
 // Load your project's Models
 
