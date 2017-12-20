@@ -55,9 +55,10 @@ exports = module.exports = function (app) {
 	
 	
 	
-	
-	//mongo express
-	app.use('/mongo_express', middleware.requireUser, mongo_express(mongo_express_config));
+	if(keystone.get('env')=='development'){
+        //mongo express
+        app.use('/mongo_express', middleware.requireUser, mongo_express(mongo_express_config));
+    }
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);

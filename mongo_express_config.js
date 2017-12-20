@@ -1,43 +1,15 @@
 'use strict';
 
-var mongo;
-var url = require('url');
-
-if (typeof process.env.MONGODB_PORT === 'string') {
-  var mongoConnection = url.parse(process.env.MONGODB_PORT);
-  process.env.ME_CONFIG_MONGODB_SERVER  = mongoConnection.hostname;
-  process.env.ME_CONFIG_MONGODB_PORT    = mongoConnection.port;
-}
-
-// Accesing Bluemix variable to get MongoDB info
-if (process.env.VCAP_SERVICES) {
-  var dbLabel = 'mongodb-2.4';
-  var env = JSON.parse(process.env.VCAP_SERVICES);
-  if (env[dbLabel]) {
-    mongo = env[dbLabel][0].credentials;
-  }
-} else {
-  mongo = {
-    db:       'db',
-    host:     'localhost',
-    password: 'pass',
-    port:     27017,
-    ssl:      false,
-    url:      'mongodb://localhost:27017/db',
-    username: 'admin',
-  };
-}
-
 module.exports = {
   mongodb: {
-    server: process.env.ME_CONFIG_MONGODB_SERVER  || mongo.host,
-    port:   process.env.ME_CONFIG_MONGODB_PORT    || mongo.port,
+
+    connectionString: process.env.MONGOLAB_URL,// fix
 
     //ssl: connect to the server using secure SSL
-    ssl: process.env.ME_CONFIG_MONGODB_SSL || mongo.ssl,
+    ssl: false,
 
     //sslValidate: validate mongod server certificate against CA
-    sslValidate: process.env.ME_CONFIG_MONGODB_SSLVALIDATE || true,
+    sslValidate: true,
 
     //sslCA: array of valid CA certificates
     sslCA:  [],
@@ -46,33 +18,25 @@ module.exports = {
     autoReconnect: true,
 
     //poolSize: size of connection pool (number of connections to use)
-    poolSize: 4,
+    poolSize: config.mongo.pool_size || 4,
 
     //set admin to true if you want to turn on admin features
     //if admin is true, the auth list below will be ignored
     //if admin is true, you will need to enter an admin username/password below (if it is needed)
-    admin: process.env.ME_CONFIG_MONGODB_ENABLE_ADMIN ? process.env.ME_CONFIG_MONGODB_ENABLE_ADMIN.toLowerCase() === 'true' : false,
+    admin: true,
 
     // >>>>  If you are using regular accounts, fill out auth details in the section below
     // >>>>  If you have admin auth, leave this section empty and skip to the next section
     auth: [
-      /*
-       * Add the name, username, and password of the databases you want to connect to
-       * Add as many databases as you want!
-       */
-      {
-        database: process.env.ME_CONFIG_MONGODB_AUTH_DATABASE || mongo.db,
-        username: process.env.ME_CONFIG_MONGODB_AUTH_USERNAME || mongo.username,
-        password: process.env.ME_CONFIG_MONGODB_AUTH_PASSWORD || mongo.password,
-      },
+
     ],
 
     //  >>>>  If you are using an admin mongodb account, or no admin account exists, fill out section below
     //  >>>>  Using an admin account allows you to view and edit all databases, and view stats
 
     //leave username and password empty if no admin account exists
-    adminUsername: process.env.ME_CONFIG_MONGODB_ADMINUSERNAME || '',
-    adminPassword: process.env.ME_CONFIG_MONGODB_ADMINPASSWORD || '',
+    adminUsername: config.mongo.admin_username || '',
+    adminPassword: config.mongo.admin_password || '',
 
     //whitelist: hide all databases except the ones in this list  (empty list for no whitelist)
     whitelist: [],
@@ -82,7 +46,7 @@ module.exports = {
   },
 
   site: {
-    // baseUrl: the URL that mongo express will be located at - Remember to add the forward slash at the stard and end!
+    // baseUrl: the URL that mongo express will be located at - Remember to add the forward slash at the start and end!
     baseUrl: process.env.ME_CONFIG_SITE_BASEURL || '/',
     cookieKeyName: 'mongo-express',
     cookieSecret:     process.env.ME_CONFIG_SITE_COOKIESECRET   || 'cookiesecret',
@@ -95,10 +59,10 @@ module.exports = {
     sslKey:           process.env.ME_CONFIG_SITE_SSL_KEY_PATH   || '',
   },
 
-  //set useBasicAuth to true if you want to authehticate mongo-express loggins
+  //set useBasicAuth to true if you want to authenticate mongo-express loggins
   //if admin is false, the basicAuthInfo list below will be ignored
   //this will be true unless ME_CONFIG_BASICAUTH_USERNAME is set and is the empty string
-  useBasicAuth: process.env.ME_CONFIG_BASICAUTH_USERNAME !== '',
+  useBasicAuth: false,
 
   basicAuth: {
     username: process.env.ME_CONFIG_BASICAUTH_USERNAME || 'admin',
@@ -141,6 +105,12 @@ module.exports = {
     //collapsibleJSONDefaultUnfold: if collapsibleJSON is set to `true`, this defines default level
     //  to which JSONs are displayed unfolded; use number or "all" to unfold all levels
     collapsibleJSONDefaultUnfold: 1,
+
+    //gridFSEnabled: if gridFSEnabled is set to 'true', you will be able to manage uploaded files ( ak. grids, gridFS )
+    gridFSEnabled: process.env.ME_CONFIG_SITE_GRIDFS_ENABLED || false,
+
+    // logger: this object will be used to initialize router logger (morgan)
+    logger: {},
   },
 
   // Specify the default keyname that should be picked from a document to display in collections list.

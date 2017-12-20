@@ -2,8 +2,6 @@
 // customising the .env file in your project's root folder.
 require('dotenv').load();
 
-console.log(process.env);
-
 // Require keystone
 var keystone = require('keystone');
 var Twig = require('twig');
@@ -22,23 +20,11 @@ keystone.set('custom email',{
 	base_url: process.env.BASE_URL
 });
 
-var mongoose = require('mongoose');
-
-var _connect = mongoose.connect.bind(mongoose);
-
-mongoose.connect = function(){
-    return _connect(
-        process.env.MONGOLAB_URL
-    );
-};
-
 //keystone init
 keystone.init({
     'debug':true,
 	'name': 'Jeda',
 	'brand': 'Jeda',
-    'mongoose':mongoose,
-    'mongo': process.env.MONGOLAB_URL,
 	'sass': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
@@ -57,11 +43,6 @@ keystone.init({
 	'user model': 'User',
 
 });
-
-keystone.set('mongo',process.env.MONGOLAB_URL);
-
-console.log('mongo = %s',keystone.get('mongo'));
-
 // Load your project's Models
 
 keystone.import('models');
