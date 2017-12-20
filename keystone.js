@@ -22,11 +22,22 @@ keystone.set('custom email',{
 	base_url: process.env.BASE_URL
 });
 
+var mongoose = require('mongoose');
+
+var _connect = mongoose.connect.bind(mongoose);
+
+mongoose.connect = function(){
+    return _connect(
+        process.env.MONGOLAB_URL
+    );
+};
+
 //keystone init
 keystone.init({
     'debug':true,
 	'name': 'Jeda',
 	'brand': 'Jeda',
+    'mongoose':mongoose,
     'mongo': process.env.MONGOLAB_URL,
 	'sass': 'public',
 	'static': 'public',
