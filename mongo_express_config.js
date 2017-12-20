@@ -18,7 +18,7 @@ module.exports = {
     autoReconnect: true,
 
     //poolSize: size of connection pool (number of connections to use)
-    poolSize: config.mongo.pool_size || 4,
+    poolSize: 2,
 
     //set admin to true if you want to turn on admin features
     //if admin is true, the auth list below will be ignored
@@ -35,8 +35,8 @@ module.exports = {
     //  >>>>  Using an admin account allows you to view and edit all databases, and view stats
 
     //leave username and password empty if no admin account exists
-    adminUsername: config.mongo.admin_username || '',
-    adminPassword: config.mongo.admin_password || '',
+    adminUsername: '',
+    adminPassword: '',
 
     //whitelist: hide all databases except the ones in this list  (empty list for no whitelist)
     whitelist: [],
@@ -50,7 +50,7 @@ module.exports = {
     baseUrl: process.env.ME_CONFIG_SITE_BASEURL || '/',
     cookieKeyName: 'mongo-express',
     cookieSecret:     process.env.ME_CONFIG_SITE_COOKIESECRET   || 'cookiesecret',
-    host:             process.env.VCAP_APP_HOST                 || 'localhost',
+    host:             process.env.VCAP_APP_HOST                 || process.env.DOMAIN || 'localhost',
     port:             process.env.VCAP_APP_PORT                 || 8081,
     requestSizeLimit: process.env.ME_CONFIG_REQUEST_SIZE        || '50mb',
     sessionSecret:    process.env.ME_CONFIG_SITE_SESSIONSECRET  || 'sessionsecret',
