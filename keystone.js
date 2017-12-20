@@ -49,7 +49,7 @@ keystone.init({
 
 keystone.set('mongo',process.env.MONGOLAB_URL);
 
-console.log(keystone.get('mongo'));
+console.log('mongo = %s',keystone.get('mongo'));
 
 // Load your project's Models
 
