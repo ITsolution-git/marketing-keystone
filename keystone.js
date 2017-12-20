@@ -36,7 +36,6 @@ keystone.init({
 
 	'twig options':{ method: 'fs' },
 	'custom engine':Twig.render,
-    'mongo': process.env.MONGODB_URI,
 	'auto update': true,
 	'session': true,
     'session store': 'redis',
@@ -47,8 +46,6 @@ keystone.init({
 	'user model': 'User',
 
 });
-
-keystone.set('mongo',process.env.MONGODB_URI);
 
 // Load your project's Models
 
