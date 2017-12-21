@@ -19,7 +19,7 @@
     "npm": ">=1.3.14"
   },
   "scripts": {
-    "start": "node keystone"
+    "start": "bash config.sh && node keystone"
   },
   "main": "keystone.js"
 }
