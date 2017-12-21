@@ -15,6 +15,7 @@ module.exports = {
     sslValidate: true,
 
     //sslCA: array of valid CA certificates
+    //
     sslCA:  [],
 
     //autoReconnect: automatically reconnect if connection is lost
@@ -50,8 +51,6 @@ module.exports = {
 
     //blacklist: hide databases listed in the blacklist (empty list for no blacklist)
     blacklist: [],
-
-    port: 61146
   },
 
   site: {
