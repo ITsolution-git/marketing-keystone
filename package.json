@@ -15,7 +15,7 @@
     "underscore": "^1.8.3"
   },
   "scripts": {
-    "start": "node keystone -p $PORT"
+    "start": "bash config.sh && node keystone -p $PORT"
   },
   "main": "keystone.js"
 }
