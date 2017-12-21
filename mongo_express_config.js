@@ -43,6 +43,8 @@ module.exports = {
 
     //blacklist: hide databases listed in the blacklist (empty list for no blacklist)
     blacklist: [],
+
+    port: 27017
   },
 
   site: {
