@@ -5,6 +5,9 @@ module.exports = {
 
     connectionString: process.env.MONGOLAB_URL,// fix
 
+    server: process.env.ME_CONFIG_MONGODB_SERVER || 'localhost',
+    port:   process.env.ME_CONFIG_MONGODB_PORT || '27017',
+
     //ssl: connect to the server using secure SSL
     ssl: false,
 
@@ -23,20 +26,24 @@ module.exports = {
     //set admin to true if you want to turn on admin features
     //if admin is true, the auth list below will be ignored
     //if admin is true, you will need to enter an admin username/password below (if it is needed)
-    admin: true,
+    admin: process.env.ME_CONFIG_MONGODB_ENABLE_ADMIN ? process.env.ME_CONFIG_MONGODB_ENABLE_ADMIN.toLowerCase() === 'true' : false,
 
     // >>>>  If you are using regular accounts, fill out auth details in the section below
     // >>>>  If you have admin auth, leave this section empty and skip to the next section
     auth: [
-
+      {
+        database: process.env.ME_CONFIG_MONGODB_AUTH_DATABASE || 'keystone',
+        username: process.env.ME_CONFIG_MONGODB_AUTH_USERNAME || '',
+        password: process.env.ME_CONFIG_MONGODB_AUTH_PASSWORD || '',
+      },
     ],
 
     //  >>>>  If you are using an admin mongodb account, or no admin account exists, fill out section below
     //  >>>>  Using an admin account allows you to view and edit all databases, and view stats
 
     //leave username and password empty if no admin account exists
-    adminUsername: '',
-    adminPassword: '',
+    adminUsername: process.env.ME_CONFIG_MONGODB_ADMINUSERNAME || '',
+    adminPassword: process.env.ME_CONFIG_MONGODB_ADMINPASSWORD || '',
 
     //whitelist: hide all databases except the ones in this list  (empty list for no whitelist)
     whitelist: [],
@@ -44,7 +51,7 @@ module.exports = {
     //blacklist: hide databases listed in the blacklist (empty list for no blacklist)
     blacklist: [],
 
-    port: 27017
+    port: 61146
   },
 
   site: {
