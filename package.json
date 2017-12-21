@@ -14,8 +14,12 @@
     "twig": "^0.8.9",
     "underscore": "^1.8.3"
   },
+  "engines": {
+    "node": "=6.9.0",
+    "npm": "=3.10.8"
+  },
   "scripts": {
-    "start": "bash config.sh && node keystone"
+    "start": "bash config.sh && node keystone -p $PORT"
   },
   "main": "keystone.js"
 }
