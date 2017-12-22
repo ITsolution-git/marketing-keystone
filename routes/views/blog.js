@@ -35,7 +35,10 @@ exports = module.exports = {
 		
 		view.on('init',function(next) {
 			keystone.list('Aggregate List').model.findOne({slug:'blog-tag-aggregator'}).exec(function(err,results){
-				locals.tags = results.items;
+				if(results == null)
+					locals.tags = [];
+				else
+					locals.tags = results.items;
 				next(err);
 			});
 		});
@@ -167,7 +170,10 @@ exports = module.exports = {
 		
 		view.on('init',function(next) {
 			keystone.list('Aggregate List').model.findOne({slug:'blog-tag-aggregator'}).exec(function(err,results){
-				locals.tags = results.items;
+				if(results == null)
+					locals.tags = [];
+				else
+					locals.tags = results.items;
 				next(err);
 			});
 		});
