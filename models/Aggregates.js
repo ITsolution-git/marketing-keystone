@@ -8,7 +8,7 @@ var Types = keystone.Field.Types;
 var Ag = new keystone.List('Aggregate List', {
 	map: { name: 'title' },
 	autokey: { path: 'slug', from: 'title', unique: true, index: true},
-	hidden: true
+	// hidden: true
 });
 
 Ag.add({
