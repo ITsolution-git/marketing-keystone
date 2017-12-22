@@ -2197,3 +2197,12 @@ h4.title {
     font-weight: 300;
     letter-spacing: 0.1em;
 }
+
+.overlay-service{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.65);
+}
