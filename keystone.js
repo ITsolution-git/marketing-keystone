@@ -71,7 +71,7 @@ keystone.set('nav', {
 	'About': ['abouts','staff-members'],
 	'Footer':'footers',
 	'Contact':'contacts',
-	'Products': ['products','data-sheets'],
+	'Products': ['products','categories', 'sub-categories', 'data-sheets'],
 	'Blog': ['posts'],
 	'Images': 'galleries',
 	'Other': ['enquiries','users', 'aggregate-lists']

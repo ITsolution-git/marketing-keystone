@@ -28,6 +28,7 @@ Product.add({
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
 		extended: { type: Types.Html, wysiwyg: true, height: 400 }
 	},
+	category: {type: Types.Relationship, ref: 'Sub Category', index: true},
 	showFeatures: { type: Types.Boolean, default: true},
 	feature1:{
 		title: { type: String, label:'Feature 1 Title', dependsOn: { showFeatures: true } },
