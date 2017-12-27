@@ -39,6 +39,14 @@ exports = module.exports = function (req, res) {
 			next(err);
 		});
 	});
+
+	view.on('init',function(next){
+		keystone.list('Category').model.find().populate('sub').exec(function(err,categories){
+			console.log(categories)
+			locals.categories = categories;
+			next(err);
+		});
+	});
 	
 	// load six most recent posts
 	view.on('init', function(next) {
