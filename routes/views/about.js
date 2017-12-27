@@ -62,7 +62,7 @@ exports = module.exports = function(req,res){
 
 	view.on('init',function(next){
 		keystone.list('Introduction').model.findOne().exec(function(err,result){
-			locals.introduction = result;
+			locals.intro = result;
 			next(err);
 		});
 	});
