@@ -77,24 +77,25 @@
 		</div>
 	</div>
 	{% include '../mixins/testimonials.twig' %}
-	<div class="team wrapper">
+	<div class="company-info wrapper clearfix">
 		<div class="container">
 			<div class="row">
-				<div class="section-title text-center wow fadeIn">
-					<h2>Our Leaders</h2>
-				</div>
-				<div class="team-wrap wow fadeIn" data-wow-delay="0.5s">
-					{% for item in staff %}
-					<div class="team-item">
-						<div class="team-photo">
-							<img src="/ul/{{item.image.filename}}" alt="" />
-							<div class="team-details">
-								<h4>{{item.name}}</h4>
-								<p>{{item.title}}</p>
-							</div>
-						</div>
+				<div class="company-wrap row">
+					<div class="company-slider col-md-6 wow fadeIn">
+						<ul class="slides">
+							<li class="slide-item clearfix">   
+								<img src="/ul/{{staff.image.filename}}" alt="" />
+							</li>
+						</ul>
 					</div>
-					{% endfor %}
+					<div class="company-desc col-md-6 wow fadeIn">
+						<h1 class="title">{{staff.title}}</h1>
+						<h4 class="title">{{staff.subTitle1}}</h4>
+						{{staff.subdescription1}}
+
+						<h4 class="title">{{staff.subTitle2}}</h4>
+						{{staff.subdescription2}}
+					</div>
 				</div>
 			</div>
 		</div>

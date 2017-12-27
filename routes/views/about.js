@@ -68,7 +68,7 @@ exports = module.exports = function(req,res){
 	});
 	
 	view.on('init',function(next){
-		keystone.list('Staff Member').model.find({state:'published'}).exec(function(err,result){
+		keystone.list('Staff Member').model.findOne({state:'published'}).exec(function(err,result){
 			locals.staff = result;
 			next(err);
 		});
