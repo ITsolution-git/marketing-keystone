@@ -61,6 +61,9 @@
                                             {% for item in productLinks %}
                                                 <li {% if loop.last %}class="last"{%endif%}><a href="/products/{{item.slug}}">{{item.title}}</a></li>
                                             {% endfor %}
+                                            {% for item in categories %}
+                                                <li {% if loop.last %}class="last"{%endif%}>{{item.name}}</li>
+                                            {% endfor %}
                                             </ul>
                                         </li>
                                         <li><a href="/blog">Blog</a></li>

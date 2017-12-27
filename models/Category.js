@@ -2,12 +2,10 @@ var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
 var s = new keystone.List('Category',{
+	autocreate: true,
 	map: { name: 'name' },
-	nodelete: true,
-	track: true,
-	label: 'Category',
-    plural: 'Category',
-	autocreate: true
+	autokey: { path: 'slug', from: 'name', unique: true },
+	track: true
 });
 
 s.add({

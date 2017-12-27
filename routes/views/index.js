@@ -42,7 +42,6 @@ exports = module.exports = function (req, res) {
 
 	view.on('init',function(next){
 		keystone.list('Category').model.find().populate('sub').exec(function(err,categories){
-			console.log(categories)
 			locals.categories = categories;
 			next(err);
 		});
