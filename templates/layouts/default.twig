@@ -58,11 +58,10 @@
                                         <li><a href="/about">About Us</a></li>
                                         <li class="has-sub"><a href="/products">Categories</a>
                                             <ul>
-                                            {% for item in productLinks %}
-                                                <li {% if loop.last %}class="last"{%endif%}><a href="/products/{{item.slug}}">{{item.title}}</a></li>
-                                            {% endfor %}
                                             {% for item in categories %}
-                                                <li {% if loop.last %}class="last"{%endif%}>{{item.name}}</li>
+                                                {% for it in item.sub %}
+                                                <li {% if loop.last %}class="last"{%endif%}><a href="/products/{{it.slug}}">{{it.name}}</a></li>
+                                                {% endfor %}
                                             {% endfor %}
                                             </ul>
                                         </li>
