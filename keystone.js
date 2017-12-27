@@ -68,7 +68,7 @@ keystone.set('routes', require('./routes'));
 
 keystone.set('nav', {
 	'Home': ['home-settings','sliders','why-choose-us','testimonials','partners','stats'],
-	'About': ['abouts','staff-members'],
+	'About': ['abouts','staff-members', 'introductions'],
 	'Footer':'footers',
 	'Contact':'contacts',
 	'Products': ['products','categories', 'sub-categories', 'data-sheets'],
