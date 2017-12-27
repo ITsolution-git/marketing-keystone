@@ -42,6 +42,9 @@ exports = module.exports = function (app) {
 	
 	//about
 	app.get('/about',routes.about);
+
+	//about
+	app.get('/category',routes.about);
 	
 	//contact
 	app.all('/contact', routes.contact);
