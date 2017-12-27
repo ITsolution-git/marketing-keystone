@@ -56,14 +56,13 @@
                                     <ul class="menu">
                                         <li><a href="/">Home</a></li>
                                         <li><a href="/about">About Us</a></li>
-                                        <li class="has-sub"><a href="/products">Products</a>
+                                        <li class="has-sub"><a href="/products">Categories</a>
                                             <ul>
                                             {% for item in productLinks %}
                                                 <li {% if loop.last %}class="last"{%endif%}><a href="/products/{{item.slug}}">{{item.title}}</a></li>
                                             {% endfor %}
                                             </ul>
                                         </li>
-                                        <li><a href="/category">Category</a></li>
                                         <li><a href="/blog">Blog</a></li>
                                         <li><a href="/contact">Contact</a></li>
                                     </ul>
@@ -102,7 +101,7 @@
                     <ul class="slide-menu-items">
                         <li><a href="/">Home</a></li>
                         <li><a href="/about">About Us</a></li>
-                        <li class="has-sub"><a href="/products">Products</a>
+                        <li class="has-sub"><a href="/products">Categories</a>
                             <ul>
 															 {% for item in productLinks %}
 															 <li><a href="/products/{{item.slug}}">{{item.title}}</a></li>
