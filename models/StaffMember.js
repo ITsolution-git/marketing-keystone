@@ -18,8 +18,11 @@ s.add({
 			return '<img src="../../ul/'+file.filename+'" />';
 		}
 	},
-	name: { type: String},
 	title: { type: String},
+	subTitle1: { type: String},
+	subdescription1: { type: Types.Html, wysiwyg: true, height: 200},
+	subTitle2: { type: String},
+	subdescription2: { type: Types.Html, wysiwyg: true, height: 200},
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
 });
 
