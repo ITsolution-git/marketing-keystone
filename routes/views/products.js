@@ -105,13 +105,16 @@ exports = module.exports = {
 		});
 		
 		view.on('init',function(next){
-			keystone.list('Product').model.findOne({state:'published',slug: req.params.slug }).populate('datasheets').exec(function(err,results) {
+			keystone.list('Product').model.findOne({state:'published',slug: req.params.slug }).populate('datasheets').populate('category').exec(function(err,results) {
 				if(results == null){
 					return res.status(404).send(keystone.wrapHTMLError('Sorry, no page could be found at this address (404)'));
 				}else{
-					locals.product = results;
-					//get the datasheets
-					next();
+					keystone.list('Sub Category').model.findOne({'_id': results.category._id}).populate('parent').exec(function(err, cat){
+						results.category = cat
+						locals.product = results;
+						console.log(results)
+						next();
+					})
 				}
 			});
 		});
