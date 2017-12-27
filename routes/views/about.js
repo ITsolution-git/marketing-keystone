@@ -59,6 +59,13 @@ exports = module.exports = function(req,res){
 			next(err);
 		});
 	});
+
+	view.on('init',function(next){
+		keystone.list('Introduction').model.findOne().exec(function(err,result){
+			locals.introduction = result;
+			next(err);
+		});
+	});
 	
 	view.on('init',function(next){
 		keystone.list('Staff Member').model.find({state:'published'}).exec(function(err,result){
