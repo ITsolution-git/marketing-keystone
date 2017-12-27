@@ -120,8 +120,10 @@
                     <button class="c-menu__close icon icon-close"></button>
 
                     <div class="search-input">
-                        <input type="text" name="s" placeholder="Type some text in here..." class="untouched">
-                        <button><i class="fa fa-search"></i></button>
+                        <form method="get" action="/products">
+                            <input type="text" name="q" placeholder="Search Products" class="untouched">
+                            <button><i class="fa fa-search"></i></button>
+                        </form>
                     </div>
 
                     <ul class="slide-menu-items">
