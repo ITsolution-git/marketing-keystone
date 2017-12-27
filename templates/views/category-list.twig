@@ -1,0 +1,34 @@
+{% extends '../layouts/default.twig' %}
+{% block content %}
+<section class="page-title wrapper clearfix" style="background-image: url('/ul/{{settings.header_bg.filename}}');">
+	<div class="container">
+		<div class="row">
+			<div class="title-wrap wow fadeIn" data-wow-delay="1s">
+				<h1>Products</h1>
+				<div class="breadcrumbs">
+					<p>You Are Here : 
+					<span><a href="/">Home</a></span>
+					<span class="arrow"><i class="icon icon-arrow-right"></i></span>
+					<span>Products</span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="content" class="clearfix">
+	<div class="services-page wrapper bg-color">
+		<div class="container">
+			<div class="row">
+				<div class="services-wrap row">
+                    {{categories}}
+                </div>
+				<div class="row"></div>
+				<div class="contact-us-banner text-center wow fadeIn" data-wow-delay="0.5s">
+					<h1>Are you ready to work with us?</h1>
+					<a href="/contact" class="button-normal">Contact Us Now</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

@@ -5,7 +5,6 @@ var s = new keystone.List('Category',{
 	map: { name: 'name' },
 	nodelete: true,
 	track: true,
-	autocreate: true,
 	label: 'Category',
     plural: 'Category',
 	autocreate: true
@@ -16,6 +15,7 @@ s.add({
 	description: {
 		type: Types.Textarea
 	},
+	sub: { type: Types.Relationship, ref: 'Sub Category', many: true}
 });
 
 s.register();
