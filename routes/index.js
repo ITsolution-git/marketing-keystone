@@ -44,7 +44,7 @@ exports = module.exports = function (app) {
 	app.get('/about',routes.about);
 
 	//about
-	app.get('/category',routes.category.list);
+	app.get('/category/:slug',routes.category.list);
 	
 	//contact
 	app.all('/contact', routes.contact);

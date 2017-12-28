@@ -60,7 +60,7 @@
                                             <ul>
                                             {% for item in categories %}
                                                 {% for it in item.sub %}
-                                                <li {% if loop.last %}class="last"{%endif%}><a href="/products/{{it.slug}}">{{it.name}}</a></li>
+                                                <li {% if loop.last %}class="last"{%endif%}><a href="/category/{{it.slug}}">{{it.name}}</a></li>
                                                 {% endfor %}
                                             {% endfor %}
                                             </ul>

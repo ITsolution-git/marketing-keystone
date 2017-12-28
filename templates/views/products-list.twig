@@ -26,7 +26,7 @@
 					</div>
 					{% endif %}
 					{% set i = 1 %}
-					{% for item in products.results %}
+					{% for item in products %}
 					{% set i = i + 1 %}
 					{% if i > 3 %}{% set i= 1 %}{% endif %}
 					<div class="item col-md-4 wow fadeInUp" data-wow-delay="{{ (i * 3) / 10 }}s">

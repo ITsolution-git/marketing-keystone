@@ -5,12 +5,20 @@ exports = module.exports = {
 	list: function(req,res){
 		var view = new keystone.View(req,res);
 		var locals = res.locals;
-		
+
 		view.on('init',function(next){
 			keystone.list('Category').model.find().populate('sub').exec(function(err,categories){
-                console.log(categories)
-                locals.categories = categories;
-                next(err);
+				locals.categories = categories;
+				next(err);
+			});
+		});
+		
+		view.on('init',function(next){
+			keystone.list('Sub Category').model.findOne({slug: req.params.slug}).exec(function(err,category){
+				keystone.list('Product').model.find({category: category._id}).exec(function(err, products){
+					locals.products = products
+					next(err);
+				})
 			});
 		});
 		
@@ -35,6 +43,6 @@ exports = module.exports = {
 			});
 		});
 		
-		view.render('category-list');
+		view.render('products-list');
 	},
 };

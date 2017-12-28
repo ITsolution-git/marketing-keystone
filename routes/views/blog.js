@@ -78,6 +78,13 @@ exports = module.exports = {
 				next(err);
 			});
 		});
+
+		view.on('init',function(next){
+			keystone.list('Category').model.find().populate('sub').exec(function(err,categories){
+				locals.categories = categories;
+				next(err);
+			});
+		});
 		
 		// Load the posts
 		view.on('init', function(next) {

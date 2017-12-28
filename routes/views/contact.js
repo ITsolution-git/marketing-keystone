@@ -79,5 +79,12 @@ exports = module.exports = function (req, res) {
 		});
 	});
 
+	view.on('init',function(next){
+		keystone.list('Category').model.find().populate('sub').exec(function(err,categories){
+			locals.categories = categories;
+			next(err);
+		});
+	});
+
 	view.render('contact');
 };

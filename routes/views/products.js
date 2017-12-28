@@ -64,10 +64,7 @@ exports = module.exports = {
 				next(err);
 			});
 			
-		});
-		
-		
-	
+		});	
 	
 		view.render('products-list');
 	},
