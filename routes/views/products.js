@@ -5,6 +5,13 @@ exports = module.exports = {
 	list: function(req,res){
 		var view = new keystone.View(req,res);
 		var locals = res.locals;
+
+		view.on('init',function(next){
+			keystone.list('Category').model.find().populate('sub').exec(function(err,categories){
+				locals.categories = categories;
+				next(err);
+			});
+		});
 		
 		view.on('init',function(next){
 			keystone.list('Product').model.find({state:'published',nav: true}).select('title slug').exec(function(err,result){
