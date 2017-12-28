@@ -15,6 +15,7 @@ exports = module.exports = {
 		
 		view.on('init',function(next){
 			keystone.list('Sub Category').model.findOne({slug: req.params.slug}).exec(function(err,category){
+				locals.category = category
 				keystone.list('Product').model.find({category: category._id}).exec(function(err, products){
 					locals.products = products
 					next(err);
