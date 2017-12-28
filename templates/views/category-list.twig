@@ -20,9 +20,72 @@
 		<div class="container">
 			<div class="row">
 				<div class="services-wrap row">
-                    {{categories}}
-                </div>
-				<div class="row"></div>
+					{% if productQuery %}
+					<div class="col-xs-12 text-center">
+						<h3 style="margin-bottom: 94px;">Showing page <strong>{{products.currentPage}}</strong> of <strong>{{products.totalPages}}</strong> for search term <strong>"{{productQuery|striptags}}"</strong>.</h3>
+					</div>
+					{% endif %}
+					{% set i = 1 %}
+					{% for item in products %}
+					{% set i = i + 1 %}
+					{% if i > 3 %}{% set i= 1 %}{% endif %}
+					<div class="item col-md-4 wow fadeInUp" data-wow-delay="{{ (i * 3) / 10 }}s">
+						<div class="services-content">
+							<div class="services-thumb">
+								<a href="/products/{{item.slug}}">
+									<img src="/ul/{{item.image.filename}}" alt="" style="height:256px" />
+									<div class="overlay"></div>
+								</a>
+							</div>
+							<div class="services-text">
+								<h3 class="title">{{item.title}}</h3>
+								<p>{{item.content.brief|striptags|slice(0,100)~'...'}}</p>
+								<a href="/products/{{item.slug}}" class="button-normal with-icon">
+									Read More
+									<i class="icon icon-arrow-right"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				<div class="row">
+					{% if products.totalPages > 1 %}
+					<div class="pagination pull-right">
+						{% if products.previous %}
+						<span class="button">
+							<a href="?page={{ products.previous }}">
+								<i class="fa fa-angle-double-left"></i>
+							</a>
+						</span>
+						{% else %}
+						<span class="button disabled">
+							<a href="?page={{ products.previous }}">
+								<i class="fa fa-angle-double-left"></i>
+							</a>
+						</span>
+						{% endif %}
+						{% for p in products.pages %}
+							<span class="button {% if products.currentPage == p %}active{%endif%}">
+								<a href="?page={% if p == '...' %}{% if i %}{{ products.totalPages }}{% else %}1{% endif %}{% else %}{{ p }}{% endif %}">{{ p }}</a>
+							</span>
+						{% endfor %}
+						{% if data.posts.next %}
+						<span class="button last">
+							<a href="?page={{ products.next }}">
+								<i class="fa fa-angle-double-right"></i>
+							</a>
+						</span>
+						{% else %}
+						<span class="button last disabled">
+							<a href="?page={{ products.totalPages }}">
+								<i class="fa fa-angle-double-right"></i>
+							</a>
+						</span>
+						{% endif %}
+					</div>
+					{% endif %}
+				</div>
 				<div class="contact-us-banner text-center wow fadeIn" data-wow-delay="0.5s">
 					<h1>Are you ready to work with us?</h1>
 					<a href="/contact" class="button-normal">Contact Us Now</a>

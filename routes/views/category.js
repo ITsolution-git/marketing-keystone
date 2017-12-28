@@ -43,6 +43,6 @@ exports = module.exports = {
 			});
 		});
 		
-		view.render('products-list');
+		view.render('category-list');
 	},
 };
