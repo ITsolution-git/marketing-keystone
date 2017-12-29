@@ -85,6 +85,13 @@ exports = module.exports = {
 				next(err);
 			});
 		});
+
+		view.on('init',function(next){
+			keystone.list('Buy Now').model.findOne().exec(function(err,result){
+				locals.buynow = result;
+				next(err);
+			});
+		});
 		
 		// Load the posts
 		view.on('init', function(next) {
@@ -217,6 +224,13 @@ exports = module.exports = {
 		view.on('init', function(next) {
 			keystone.list('Post').model.find({state: 'published'}).sort('-publishedDate').limit(6).exec(function(err, results) {
 				locals.recentPosts = results;
+				next(err);
+			});
+		});
+
+		view.on('init',function(next){
+			keystone.list('Buy Now').model.findOne().exec(function(err,result){
+				locals.buynow = result;
 				next(err);
 			});
 		});
