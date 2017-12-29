@@ -2040,11 +2040,11 @@ h4.title {
 /* Widget Footer */
 
 .widget-footer p {
-    color: #ffffff;
+    color: grey;
 }
 
 .widget-footer h4.title {
-    color: #ffffff;
+    color: grey;
     text-transform: uppercase;
     margin-bottom: 35px;
 }
@@ -2054,11 +2054,11 @@ h4.title {
     display: block;
     margin-top: 20px;
     width: 50px;
-    border-top: 2px solid #ffffff;
+    border-top: 2px solid grey;
 }
 
 .widget-footer .footer-content h4 {
-    color: #ffffff;
+    color: grey;
     margin-bottom: 10px;
 }
 
