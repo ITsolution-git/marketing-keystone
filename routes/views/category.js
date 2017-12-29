@@ -16,10 +16,36 @@ exports = module.exports = {
 		view.on('init',function(next){
 			keystone.list('Sub Category').model.findOne({slug: req.params.slug}).exec(function(err,category){
 				locals.category = category
-				keystone.list('Product').model.find({category: category._id}).exec(function(err, products){
-					locals.products = products
-					next(err);
+				var q = keystone.list('Product').paginate({
+					page: req.query.page || 1,
+					perPage: 3,
+					maxPages: 24,
+					filters: {
+						'state': 'published'
+					}
 				})
+				.select('title slug image content.brief');
+				
+				locals.productQuery = req.query.q || false;
+				if(locals.productQuery){
+					var exp = RegExp(locals.productQuery,'i');
+					q.and([
+						{ $or : [
+							{'title': { $regex: exp } },
+							{'content.extended': { $regex: exp } }
+						] },
+					]);
+				}
+				
+				q.find({category: category._id}).exec(function(err,result){
+					locals.products = result;
+					next(err);
+				});
+				
+				// keystone.list('Product').model.find({category: category._id}).exec(function(err, products){
+				// 	locals.products = products
+				// 	next(err);
+				// })
 			});
 		});
 		
@@ -50,7 +76,7 @@ exports = module.exports = {
 				next(err);
 			});
 		});
-		
+
 		view.render('category-list');
 	},
 };
