@@ -74,7 +74,7 @@
                                             <i class="fa fa-search"></i>
                                         </div>
                                         <div class="quote-link">
-                                            <a href="/contact">Contact Us</a>
+                                            <a href="/products">Product Search</a>
                                         </div>
                                         <div class="search-input">
                                             <form method="get" action="/products">
@@ -210,11 +210,11 @@
 
                             <div class="widget-footer col-md-3">
                                 <div class="buy-now">
-                                    <h4 class="title">Buy Now !</h4>
+                                    <h4 class="title">{{buynow.title}}</h4>
                                     <div class="footer-content">
-                                        <p>Phasellus et nisl tellus. Etiam facilisis eu nisi scelerisque faucibus. Proin semper suscipit magna, nec imperdiet lacus semper vitae. Sed hendrerit enim non justo posuere placerat eget purus mauris.</p>
+                                        {{buynow.description}}
 
-                                        <a href="#" class="button-normal">Buy Now</a>
+                                        <a href="#" class="button-normal">{{buynow.button_title}}</a>
                                     </div>
                                 </div>
                             </div>
