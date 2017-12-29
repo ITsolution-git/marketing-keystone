@@ -44,6 +44,13 @@ exports = module.exports = {
 			});
 		});
 		
+		view.on('init',function(next){
+			keystone.list('Buy Now').model.findOne().exec(function(err,result){
+				locals.buynow = result;
+				next(err);
+			});
+		});
+		
 		view.render('category-list');
 	},
 };
