@@ -86,5 +86,12 @@ exports = module.exports = function (req, res) {
 		});
 	});
 
+	view.on('init',function(next){
+		keystone.list('Buy Now').model.findOne().exec(function(err,result){
+			locals.buynow = result;
+			next(err);
+		});
+	});
+
 	view.render('contact');
 };
