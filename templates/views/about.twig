@@ -42,10 +42,6 @@
 		<div class="container">
 			<div class="row">
 				<div class="company-wrap row">
-					<div class="company-desc col-md-6 wow fadeIn">
-						<h3 class="title">{{about.topSection.title}}</h3>
-						{{about.topSection.description}}
-					</div>
 					<div class="company-slider col-md-6 wow fadeIn">
 						<ul class="slides">
 							{% for item in about.topSection.gallery.images %}
@@ -54,6 +50,10 @@
 							</li>
 							{% endfor %}
 						</ul>
+					</div>
+					<div class="company-desc col-md-6 wow fadeIn">
+						<h3 class="title">{{about.topSection.title}}</h3>
+						{{about.topSection.description}}
 					</div>
 					<div class="company-vision">
 						<div class="item col-md-4 wow fadeInUp" data-wow-delay="0.3s">
