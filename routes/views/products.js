@@ -47,7 +47,7 @@ exports = module.exports = {
 			//actual products. includes pagination and search
 			var q = keystone.list('Product').paginate({
 				page: req.query.page || 1,
-				perPage: 12,
+				perPage: 3,
 				maxPages: 24,
 				filters: {
 					'state': 'published'
