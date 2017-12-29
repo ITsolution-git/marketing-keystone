@@ -35,7 +35,7 @@
 							</a>
 
 							<div class="meta">
-								<span class="date"><i class="fa fa-calendar"></i> {{item.publishedDate|date('d M Y')}}</span>
+								<span class="date"><i class="fa fa-calendar"></i> {{item.publishedDate|date('M d Y')}}</span>
 								<span class="tags last"><i class="fa fa-tag"></i> {% for tag in item.tags %}{{tag}}{% if loop.last == false %},{%endif%}{%endfor%}</span>
 							</div>
 
